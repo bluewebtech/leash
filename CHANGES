@@ -1,0 +1,77 @@
+- CHANGE LOG -
+
+2013-07-31 - Added by Peter Morrison
+	- Addition of methods within the Database class that will return the total results in 
+		the result set, the last id inserted into the specified database table, return a 
+		complete list of all table columns for the specified database table.
+	- Renamed all self static bindings througout the framework to match the name of the class 
+		the binding is defined.
+
+2013-07-30 - Added by Peter Morrison
+	- Beginning of ORM class development. The new ORM class will utilize already existing 
+		methods within the Database class to define the new ORM methods.
+
+2013-07-25 - Added by Peter Morrison
+	- Incorporation of the ORM class methods into the new Database class. 
+	- Removal and house keeping of unnecessary core functions such as the debug function and 
+		the initialization of the Plugins and Globals classes. 
+	- Added simple XML class that will convert either an XML file or XML formatted string to 
+		an array collection.
+	- Added framework class file existance try/catch error handling.
+
+2013-07-24 - Added by Peter Morrison
+	- Completely refactored the Form generator class.
+	- Completely refactored the Datasource class by renaming the actual file from datasource 
+		to database as well as the class name from Datasource to Database. All methods that 
+		exist within the new Database class are statically typed. 
+	- The dataSource() core function has been removed so that the static method development 
+		pattern is adopted throughout the entire use of the framework.
+	- All database connectors were refactored to adopted the new Database class. Existing database 
+		connections should not be affected by this change.
+	- Addition of class aliases. Currently the only aliases defined are related to the new 
+		Database class.
+
+2013-07-23 - Added by Peter Morrison
+	- Addition of error logging in conjunction with the already existent access logs. Similar 
+		to the access log file name, the error file name can also be specified within the main 
+		config file (/app/config.php).
+
+2013-07-22 - Added by Peter Morrison
+	- Addition of the App class definition. The App class can be used in a similar way as 
+		the CFML Application.cfc file. The App class is defined within a file called app.php 
+		that is stored within the /web/ directory of the application. There it is possible to 
+		utilize similar functions such as onApplicationStart,onApplicationEnd, onRequestStart, 
+		onRequestEnd, onSessionStart and onSessionEnd.
+
+2013-07-19 - Added by Peter Morrison
+	- Removal of all framework class namespaces
+	- Renaming of a few class method names that were conflicting after the removal of all 
+		namespace definitions and calls.
+	- Refactoring of the File class which allows the ability to call actual file action name 
+		methods instead of a single method which was known as file().
+	- Renaming of the database directory to connectors and renaming of all database connector 
+		classes to include the string Connect to the end of the class name.
+	- Addition of MongoDB support.
+
+2013-07-18 - Added by Peter Morrison
+	- Path constants and error handling for application directories /web/path.php.
+	- Addition of MariaDB support flag.
+	- Addition of File class which contains the ability to: 
+		1. Append text to a file.
+		2. Copy a file to a new location.
+		3. Delete a file from a specified location.
+		4. Move a file to a specified location.
+		5. Read a specified file.
+		6. Rename a specified file.
+		7. Upload a single or multiple files with or without additional requirements such as 
+			size limit, accepted file types or file name conflict.
+		8. Write and create a new file.
+	- Added error handling to many system class files.
+	- TwitterOAuth plugin 
+
+2013-07-06 - Added by Peter Morrison
+	- Addition of PostgreSQL support.
+
+2013-07-05 - Added by Peter Morrison
+	- Addition of a simple ORM class and ORM core functions that allows for NOSQL database 
+		interaction.

@@ -1,0 +1,61 @@
+PROJECT: Leash Framework
+AUTHOR:  Peter Morrison
+BUILD:   vs-2.4
+UPDATED: 2013-07-24
+
+QUICKIE : 2013-07-03
+There really is no quirkie reason why I chose to name this project Leash. The Leash 
+Framework is named after the Pearl Jam song, Leash. It is nothing more but a rock your 
+socks off fantastically amazingly great song. Possibly my most favorite Pearl Jam song 
+ever created. That's about it!
+
+PROJECT GOAL : 2013-06-19
+Create a PHP5 MVC based framework that is incredibly simple to configure and use on 
+any platform preferred. The ability to use pre-defined core functions that are commonly 
+named which can be utilized by either calling the function directly or by calling the 
+function statically. Allow multiple datasource configuration settings in a single location 
+for easy maintenance. The ability to configure a mail (SMTP) server or your liking such 
+as a connection to the Gmail SMTP server. Built in CLI to handle common actions such as 
+creating controllers, models, views and services as well as handling some configuration 
+settings.
+
+PROJECT LICENSE : 2013-07-03
+There is no license. This is a personal project which is open source. It is your 
+responsibility to understand that the Leash Framework is constantly being worked on and 
+that I have no responsibility if your project does not properly function the way you 
+intended. Feel free make whatever changes and modifications to the code you like.
+
+INSTALLATION : 2013-07-08
+1. Download and unzip the contents of the Leash Framework into a directory you plan to 
+   use for a web root.
+2. Configure a new host within your web server configuration. Be sure to make the web root 
+   point to the /web/ directory. If you plan to do local development, be sure to set up a 
+   new host in your systems host file.
+3. Enable the PDO drivers for MySQL, PostgreSQL and SQLite within php.ini. You will need to 
+   download and configure drivers for MSSQL in order to connect to a MSSQL database.
+4. Enable the mod_rewrite module within the Apache http.conf and restart the server service.
+5. Finally, open the host that you configured within your server and should be good to go.
+
+DOCUMENTATION : 2013-06-19
+The Leash Frameworks reference documentation should be able to get you started but is still 
+currently being developed and may be missing a few things here and there. Also, feel free to 
+either remove this directory if you like. It is not necessary and is not part of the internals 
+of the Leash framework.
+
+CLI : 2013-06-19
+The built in CLI
+
+SAMPLE CRUD : 2013-06-19
+The default installation contains a very simple CRUD application that acts as a band manager. 
+Nothing more than creating, reading, updating and deleting band names from a prebuilt SQLite 
+database that resides within the /app/dbase/sample.sqlite directory. This sample application 
+can be used as a guide to help with getting familiar with Leash. 
+
+PLUGINS : 2013-06-19
+Leash has the ability to install pre-built plugins or for you to build your own plugins. All 
+plugins reside in the /app/plugins/ directory. Leash comes with a few plugins installed by 
+default such as, dbug, phpmailer and testify, all of which are known PHP libraries. 
+
+TAGS : 2013-06-19
+Leash tags are special files that reside within the /app/tags/ directory. These files can 
+contain any code you like and can also define multiple tags within the same tag file as well. 

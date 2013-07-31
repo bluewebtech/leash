@@ -1,0 +1,110 @@
+h1 {
+	margin: 0;
+	padding: 15px;
+	text-indent: 10px;
+	background: url('images/bg_sidebar.png') repeat;
+	color: #ffffff;
+	font-weight: normal;
+}
+
+h2 {
+	margin: 0;
+	padding: 15px;
+	text-indent: 10px;
+	background: #ff8a00;
+	color: #ffffff;
+	font-weight: normal;
+}
+
+h3 {
+	margin: 0;
+	padding: 5px;
+	text-indent: 10px;
+	color: #0e7ee7;
+	font-weight: normal;
+}
+
+h4 {
+	margin: 0;
+	padding: 5px;
+	text-indent: 10px;
+	font-weight: normal;
+	color: #B300B0;
+}
+
+a:link, a:visited {
+	color: #0e7ee7;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+li {
+	line-height: 25px;
+	color: #666666;
+}
+
+p {
+	margin: 0;
+	padding: 10px 20px;
+	text-align: left;
+	color: #666666;
+	font-size: 18px;
+	font-weight: normal;
+	line-height: 30px;
+}
+
+#blog h1 {
+	margin: 0;
+	padding: 15px;
+	text-indent: 10px;
+	background: #ff8a00;
+	color: #ffffff;
+}
+
+#blog a:link h2, a:visited h2 {
+	margin: 0;
+	padding: 15px;
+	text-indent: 10px;
+	background: #ff8a00;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+#blog a:hover h2 {
+	margin: 0;
+	padding: 15px;
+	text-indent: 10px;
+	background: #FF9C26;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+#blog a:link h3, a:visited h3 {
+	margin: 0;
+	padding: 15px 0 0 10px;
+	text-indent: 10px;
+	color: #0e7ee7;
+	font-weight: normal;
+}
+
+#blog a:hover h3 {
+	margin: 0;
+	padding: 15px 0 0 10px;
+	text-indent: 10px;
+	color: #0e7ee7;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+#top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    display: none;
+    background: url('images/bg_sidebar.png') repeat;
+    width: 100%;
+}
