@@ -105,7 +105,7 @@ class Tags {
 
         foreach ( $dir as $key => $value ) {
 
-            if( $value != '.' && $value != CD ) {
+            if( $value != '.' && $value != CD && strpos( $value[ 0 ], '.' ) != 0 ) {
                 array_push( $files, $value );
             }
 
