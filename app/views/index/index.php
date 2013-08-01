@@ -1,29 +1,32 @@
-<?php Response::out( HTML::h1( APP_NAME ) ) ?>
-
-<iframe width="640" 
-		height="360" 
-		src="//www.youtube.com/embed/npAWkt_84QA" 
-		frameborder="0" 
-		allowfullscreen 
-		id="leash">
-</iframe>
-
-<h2>Available References</h2>
-<ul>
-	<li>
-		<a href="/docs/">Documentation</a>
-	</li>
-	<li>
-		<a href="/cli/">CLI</a>
-	</li>
-</ul>
-
 <?php 
-Response::out( 
-	System::list_controllers() . 
-	System::list_models() . 
-	System::list_plugins() . 
-	System::list_services() . 
-	System::list_tags()
+
+/*
+ * Created by: Peter Morrison
+ * Date Created: 2013-02-20
+ * Date Updated: 2013-08-01
+ * Default framework view template.
+ */
+
+$links = array( 
+	HTML::ahref( 'Documentation', '/docs/', 'Documentation' ), 
+	HTML::ahref( 'CLI', '/cli/', 'CLI' ) 
 );
-?>
+
+$iframe = array( 
+	'src' => '//www.youtube.com/embed/npAWkt_84QA', 
+	'width' => '640',
+	'height' => '360',
+	'frameborder' => '0',
+	'allowfullscreen' => true,
+	'id' => 'leash',
+);
+
+echo HTML::h1( APP_NAME );
+echo HTML::h2( 'Available References' );
+echo HTML::iframe( $iframe );
+echo HTML::ul( $links );
+echo System::list_controllers();
+echo System::list_models();
+echo System::list_plugins();
+echo System::list_services();
+echo System::list_tags();

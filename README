@@ -1,7 +1,7 @@
 PROJECT: Leash Framework
 AUTHOR:  Peter Morrison
-BUILD:   vs-2.4
-UPDATED: 2013-07-24
+BUILD:   vs-2.5
+UPDATED: 2013-07-31
 
 QUICKIE : 2013-07-03
 There really is no quirkie reason why I chose to name this project Leash. The Leash 
@@ -45,16 +45,16 @@ of the Leash framework.
 CLI : 2013-06-19
 The built in CLI
 
-SAMPLE CRUD : 2013-06-19
+SAMPLE CRUD : 2013-07-31
 The default installation contains a very simple CRUD application that acts as a band manager. 
 Nothing more than creating, reading, updating and deleting band names from a prebuilt SQLite 
-database that resides within the /app/dbase/sample.sqlite directory. This sample application 
+database that resides within the /app/dbase/bands.sqlite directory. This sample application 
 can be used as a guide to help with getting familiar with Leash. 
 
-PLUGINS : 2013-06-19
+PLUGINS : 2013-07-31
 Leash has the ability to install pre-built plugins or for you to build your own plugins. All 
 plugins reside in the /app/plugins/ directory. Leash comes with a few plugins installed by 
-default such as, dbug, phpmailer and testify, all of which are known PHP libraries. 
+default such as, dbug and phpmailer, which are known PHP libraries. 
 
 TAGS : 2013-06-19
 Leash tags are special files that reside within the /app/tags/ directory. These files can 

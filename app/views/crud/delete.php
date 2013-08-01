@@ -3,34 +3,26 @@
 /*
  * Created by: Peter Morrison
  * Date Created: 2013-02-20
- * Date Updated: 2013-07-22
+ * Date Updated: 2013-08-01
  * Sample CRUD application delete view.
  */
 
-Response::out( 
-	HTML::h1( $title . ' | ' . $band ) . 
-	HTML::h2( 'Delete' )
-);
+echo HTML::h1( $title . ' | ' . $band );
+echo HTML::h2( 'Delete' );
 
-if( !isset( $process ) ) {
+if( isset( $process ) ) {
 
-	Response::out(
-		'<form action="" name="band_form" id="band_form" method="post">' . 
-			HTML::p( 
-				HTML::b( 'Are you sure you want to delete? ' ) . $band
-			) . 
-			HTML::p(
-				HTML::nl( '<input type="submit" name="process" id="process" value="Yes" />' ) . 
-				HTML::nl( '<input type="submit" name="process" id="process" value="No" />' ) 
-			) . 
-		'</form>'
-	);
+	echo HTML::p( 'Deleted!' );
+	echo HTML::p( 'Click ' . HTML::ahref( 'here', '/crud/' ) . ' to go to band list' );
 
 } else {
 
-	Response::out(
-		HTML::p( 'Deleted' ) . 
-		HTML::p( 'Click ' . HTML::ahref( 'here', '/crud/' ) . ' to go to band list' )
-	);
+	Form::open( array( 'action' => '/crud/delete/' . $id, 'name' => 'delete', 'method' => 'post' ) );
+		Form::label( array( 'label' => 'Band:', 'value' => $band ) );
+		Form::div(
+			Form::submit( array( 'name' => 'process', 'value' => 'Yes' ) ) . 
+			Form::submit( array( 'name' => 'process', 'value' => 'No' ) ) 
+		);
+	Form::close();
 
 }

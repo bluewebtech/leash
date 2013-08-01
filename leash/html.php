@@ -171,6 +171,24 @@ class HTML {
 	}
 
 	/**
+     * Returns the provided parameters formatted in <iframe></iframe> tags
+     *
+     * return string
+     * 
+     * @param string value
+    */
+	public static function iframe( $attr ) {
+		$src        = isset( $attr[ 'src' ] ) ? $attr[ 'src' ] : '';
+		$width      = isset( $attr[ 'width' ] ) ? $attr[ 'width' ] : '';
+		$height     = isset( $attr[ 'height' ] ) ? $attr[ 'height' ] : '';
+		$border     = isset( $attr[ 'frameborder' ] ) ? $attr[ 'frameborder' ] : '';
+		$fullscreen = isset( $attr[ 'allowfullscreen' ] ) ? $attr[ 'allowfullscreen' ] : '';
+		$id         = isset( $attr[ 'id' ] ) ? $attr[ 'id' ] : '';
+		$iframe     = '<iframe width="' . $width . '" height="' . $height . '" src="' . $src . '" frameborder="' . $border . '" allowfullscreen="' . $fullscreen . '" id="' . $id . '"></iframe>' . "\n";
+		return $iframe;
+	}
+
+	/**
      * Returns the provided parameters formatted in <i></i> tags
      *
      * return string

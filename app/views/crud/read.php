@@ -3,30 +3,17 @@
 /*
  * Created by: Peter Morrison
  * Date Created: 2013-02-20
- * Date Updated: 2013-07-22
+ * Date Updated: 2013-08-01
  * Sample CRUD application read view.
  */
 
-Response::out( 
-
-	HTML::h1( $title . ' | ' . $band ) . 
-	HTML::h2( 'Read' ) . 
-	HTML::p( 
-		HTML::b( 'Created: ' ) . 
-		$date_created 
-	) . 
-	HTML::p( 
-		HTML::b( 'Updated: ' ) . 
-		$date_updated 
-	) . 
-	HTML::p( 
-		HTML::b( 'Band: ' ) . 
-		$band 
-	) . 
-	HTML::p( 
-		HTML::ahref( 'Update', '/crud/update/' . $id, 'Update' ) . ' | ' . 
-		HTML::ahref( 'Delete', '/crud/delete/' . $id, 'Delete' ) . ' | ' . 
-		HTML::ahref( 'Cancel', '/crud/cancel/' . $id, 'Cancel' )
-	)
-
+echo HTML::h1( $title . ' | ' . $band );
+echo HTML::h2( 'Read' );
+echo HTML::p( HTML::b( 'Created: ' ) . $date_created );
+echo HTML::p( HTML::b( 'Updated: ' ) . $date_updated );
+echo HTML::p( HTML::b( 'Band: ' ) . $band );
+echo HTML::p( 
+	HTML::ahref( 'Update', '/crud/update/' . $id, 'Update' ) . ' | ' . 
+	HTML::ahref( 'Delete', '/crud/delete/' . $id, 'Delete' ) . ' | ' . 
+	HTML::ahref( 'Cancel', '/crud/cancel/' . $id, 'Cancel' )
 );

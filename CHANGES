@@ -1,5 +1,9 @@
 - CHANGE LOG -
 
+2013-08-01 - Added by Peter Morrison
+	- Updated CRUD sample to include new ORM functionality.
+	- Updated the Form class to handle undefined array values.
+
 2013-07-31 - Added by Peter Morrison
 	- Addition of methods within the Database class that will return the total results in 
 		the result set, the last id inserted into the specified database table, return a 

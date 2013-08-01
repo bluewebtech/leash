@@ -51,7 +51,17 @@ table td {
 	border: 1px solid #635443;
 }
 
-.clear {clear: both;}
+.clear { clear: both; }
+
+#leash {
+	margin: 50px;
+	padding: 10px;
+	float: right;
+	border: 20px solid #0e7ee7;
+	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+	border-radius: 10px;
+}
 
 #container {
 	margin: 0;
@@ -252,7 +262,7 @@ input[type="file"] {
 	background: url('images/bgInput.jpg') repeat-x;
 }
 
-input[type="submit"] {
+input[type="submit"], input[type="reset"], input[type="button"] {
 	margin: 0;
 	padding: 20px;
 	cursor: pointer;

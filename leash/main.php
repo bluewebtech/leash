@@ -56,21 +56,6 @@ try {
 	exit;
 }
 
-// -- Make sure /leash/core.php exists before trying to do anything else.	
-// -- The core.php file contains all the core functions for the framework
-try {
-
-	if( file_exists( CD . DS . SYSTEM . DS . 'core' . SYSTEM_EXT ) ) {
-		require_once SYSTEM_PATH . 'core' . SYSTEM_EXT;
-	} else {
-		throw new Exception( 'Core file (core' . SYSTEM_EXT . ') missing in ' . DS . SYSTEM . DS );
-	}
-
-} catch( Exception $e ) {
-	echo $e->getMessage();
-	exit;
-}
-
 // -- Check if documentation folder exists and load up the framework documentation
 if( Controller::controller_filename() == 'docs' && is_dir( DOCS_ROOT ) ) {
 	require_once DOCS_ROOT . 'index' . SYSTEM_EXT;
@@ -130,8 +115,18 @@ if( !Request::is_ajax() ) {
 	// -- Set pre-defined tags
 	$tags->set( 'assets', ASSETS_PATH );
 	$tags->set( 'body', Loader::request( $tags ) );
-	$tags->set( 'description', $GLOBALS[ 'meta_description' ] );
-	$tags->set( 'keywords', $GLOBALS[ 'meta_keywords' ] );
+	
+	if( isset( $GLOBALS[ 'meta_description' ] ) ) {
+		$tags->set( 'description', $GLOBALS[ 'meta_description' ] );
+	} else {
+		$tags->set( 'description', '' );
+	}
+
+	if( isset( $GLOBALS[ 'meta_keywords' ] ) ) {
+		$tags->set( 'keywords', $GLOBALS[ 'meta_keywords' ] );
+	} else {
+		$tags->set( 'keywords', '' );
+	}
 
 	// -- Check whether to use the default app name for the page title or a defined title
 	if( isset( $GLOBALS[ 'meta_title' ] ) ) {

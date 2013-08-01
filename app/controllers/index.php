@@ -3,9 +3,9 @@
 class IndexController {
 
 	public function index() {
-		description( APP_NAME );
-		title( APP_NAME );
-		View::render( 'index', $values );
+		HTML::description( 'Crazy easy PHP MVC framework' );
+		HTML::title( APP_NAME );
+		View::render( 'index' );
 	}
 
 }

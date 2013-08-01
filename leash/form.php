@@ -1,5 +1,18 @@
 <?php 
 
+/*
+Form::open( array( 'name' => 'contact', 'action' => '', 'method' => 'post' ) );
+	Form::text( array( 'label' => 'First Name:',  'name' => 'first_name', 'size' => '30' ) );
+	Form::text( array( 'label' => 'Last Name:',  'name' => 'last_name', 'size' => '30' ) );
+	Form::checkbox( array( 'label' => 'Favorite Color:',  'name' => 'color', 'values' => 'Blue, Green, Black, Brown, Orange' ) );
+	Form::radio( array( 'label' => 'Do you like beer?',  'name' => 'beer', 'values' => 'Yes, No' ) );
+	Form::select( array( 'label' => 'Gender',  'name' => 'gender', 'values' => 'Male, Female, Alien, Zombie, Moose' ) );
+	Form::textarea( array( 'label' => 'Comments:',  'name' => 'comments' ) );
+	Form::submit( array( 'name' => 'process', 'value' => 'Process' ) );
+	Form::hidden( array( 'name' => 'stuff', 'value' => 'Hammer' ) );
+Form::close();
+*/
+
 class Form {
 	
 	/**
@@ -21,9 +34,13 @@ class Form {
 	 * return string
 	*/
 	public static function button( $attr = array() ) {
-		$text = Form::label( $attr );
-		$text .= "\t" . '<input type="button"' . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::tabindex( $attr[ 'tabindex' ] ) . Form::value( $attr[ 'value' ] ) . ' />' . "\n";
-		return Form::div( $text );
+		$text     = '';
+		$name     = isset( $attr[ 'name' ] ) ? $attr[ 'name' ] : '';
+		$tabindex = isset( $attr[ 'tabindex' ] ) ? $attr[ 'tabindex' ] : '';
+		$value    = isset( $attr[ 'value' ] ) ? $attr[ 'value' ] : '';
+		$text     = Form::label( $attr );
+		$text    .= "\t" . '<input type="button"' . Form::name( $name ) . Form::id( $name ) . Form::tabindex( $tabindex ) . Form::value( $value ) . ' />' . "\n";
+		echo $text;
 	}
 
 	/**
@@ -34,23 +51,25 @@ class Form {
 	 * return string
 	*/
 	public static function checkbox( $attr = array() ) {
-		$text = Form::label( $attr );
+		$name   = isset( $attr[ 'name' ] ) ? $attr[ 'name' ] : '';
+		$values = isset( $attr[ 'values' ] ) ? $attr[ 'values' ] : '';
+		$text   = Form::label( $attr );
 
-		if( !is_array( $attr[ 'values' ] ) ) {
-			$attr[ 'values' ] = explode( ',', preg_replace( '/\s+/', '', $attr[ 'values' ] ) );
+		if( !is_array( $values ) ) {
+			$values = explode( ',', preg_replace( '/\s+/', '', $values ) );
 		} else {
-			$attr[ 'values' ] = explode( ',', preg_replace( '/\s+/', '', $attr[ 'values' ][ 0 ] ) );
+			$values = explode( ',', preg_replace( '/\s+/', '', $values[ 0 ] ) );
 		}
 
-		foreach( $attr[ 'values' ] as $key => $value ) {
-			if( count( $attr[ 'values' ] ) != 1 ) {
-				$text .= "\t" . '<input type="checkbox"' . Form::name( $attr[ 'name' ] . '[]' ) . Form::id( $attr[ 'name' ] . '[]' ) . Form::value( $value ) . ' /> ' . $value . "<br />\n";
+		foreach( $values as $key => $value ) {
+			if( count( $value ) != 1 ) {
+				$text .= "\t" . '<input type="checkbox"' . Form::name( $name . '[]' ) . Form::id( $name . '[]' ) . Form::value( $value ) . ' /> ' . $value . "<br />\n";
 			} else {
-				$text .= "\t" . '<input type="checkbox"' . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::value( $value ) . ' /> ' . $value . "<br />\n";
+				$text .= "\t" . '<input type="checkbox"' . Form::name( $name ) . Form::id( $name ) . Form::value( $value ) . ' /> ' . $value . "<br />\n";
 			}
 		}
 		
-		return Form::div( $text );
+		echo Form::div( $text );
 	}
 
 	/**
@@ -59,7 +78,7 @@ class Form {
 	 * return string
 	*/
 	public static function close() {
-		return "</form>\n";
+		echo "</form>\n";
 	}
 
 	/**
@@ -101,9 +120,9 @@ class Form {
 	 * return string
 	*/
 	public static function div( $field ) {
-		$text = '<div style="padding:5px;">' . "\n";
+		$text = "\t" . '<div style="padding:5px;">' . "\n";
 		$text .= $field;
-		$text .= "</div>\n";
+		$text .= "\t</div>\n";
 		return $text;
 	}
 
@@ -143,9 +162,12 @@ class Form {
 	 * return string
 	*/
 	public static function file( $attr = array() ) {
-		$text = Form::label( $attr );
-		$text .= "\t" . '<input type="file"' . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::multiple( $attr[ 'multiple' ] ) . Form::tabindex( $attr[ 'tabindex' ] ) . "/>\n";
-		return Form::div( $text );
+		$name     = isset( $attr[ 'name' ] ) ? $attr[ 'name' ] : '';
+		$tabindex = isset( $attr[ 'tabindex' ] ) ? $attr[ 'tabindex' ] : '';
+		$multiple = isset( $attr[ 'multiple' ] ) ? $attr[ 'multiple' ] : '';
+		$text     = Form::label( $attr );
+		$text    .= "\t" . '<input type="file"' . Form::name( $name ) . Form::id( $name ) . Form::multiple( $multiple ) . Form::tabindex( $tabindex ) . "/>\n";
+		echo Form::div( $text );
 	}
 
 	/**
@@ -168,7 +190,7 @@ class Form {
 	*/
 	public static function hidden( $attr = array() ) {
 		$text = "\t" . '<input type="hidden"' . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::value( $attr[ 'value' ] ) . ' />' . "\n";
-		return $text;
+		echo $text;
 	}
 
 	/**
@@ -178,8 +200,14 @@ class Form {
 	 * 
 	 * return string
 	*/
-	public static function label( $label ) {
-		return isset( $label[ 'label' ] ) ? "\t" . '<label>' . $label[ 'label' ] . '</label><br />' . "\n" : '';
+	public static function label( $label = array() ) {
+		if( !isset( $label[ 'name' ] ) ) {
+			$text  = isset( $label[ 'label' ] ) ? "\t\t" . '<label for="' . $label[ 'label' ] . '">' . $label[ 'label' ] . '</label><br />' . "\n" : '';
+			$text .= "\t\t" . $label[ 'value' ] . "\n";
+			echo Form::div( $text );
+		} else {
+			return isset( $label[ 'label' ] ) ? "\t\t" . '<label for="' . $label[ 'label' ] . '">' . $label[ 'label' ] . '</label><br />' . "\n" : '';
+		}
 	}
 
 	/**
@@ -223,7 +251,11 @@ class Form {
 	 * return string
 	*/
 	public static function open( $attr = array() ) {
-		return '<form' . Form::action( $attr[ 'action' ] ) . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::method( $attr[ 'method' ] ) . Form::enctype( $attr[ 'enctype' ] ) . '>' . " \n";
+		$action  = isset( $attr[ 'action' ] ) ? $attr[ 'action' ] : '';
+		$name    = isset( $attr[ 'name' ] ) ? $attr[ 'name' ] : '';
+		$method  = isset( $attr[ 'method' ] ) ? $attr[ 'method' ] : '';
+		$enctype = isset( $attr[ 'enctype' ] ) ? $attr[ 'enctype' ] : '';
+		echo '<form' . Form::action( $action ) . Form::name( $name ) . Form::id( $name ) . Form::method( $method ) . Form::enctype( $enctype ) . '>' . " \n";
 	}
 
 	/**
@@ -236,7 +268,7 @@ class Form {
 	public static function password( $attr = array() ) {
 		$text = Form::label( $attr );
 		$text .= "\t" . '<input type="password"' . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::size( $attr[ 'size' ] ) . Form::tabindex( $attr[ 'tabindex' ] ) . ' value="" />' . "\n";
-		return Form::div( $text );
+		echo Form::div( $text );
 	}
 
 	/**
@@ -247,19 +279,22 @@ class Form {
 	 * return string
 	*/
 	public static function radio( $attr = array() ) {
-		$text = Form::label( $attr );
+		$name     = isset( $attr[ 'name' ] ) ? $attr[ 'name' ] : '';
+		$tabindex = isset( $attr[ 'tabindex' ] ) ? $attr[ 'tabindex' ] : '';
+		$values   = isset( $attr[ 'values' ] ) ? $attr[ 'values' ] : '';
+		$text     = Form::label( $attr );
 
-		if( !is_array( $attr[ 'values' ] ) ) {
-			$attr[ 'values' ] = explode( ',', preg_replace( '/\s+/', '', $attr[ 'values' ] ) );
+		if( !is_array( $values ) ) {
+			$values = explode( ',', preg_replace( '/\s+/', '', $values ) );
 		} else {
-			$attr[ 'values' ] = explode( ',', preg_replace( '/\s+/', '', $attr[ 'values' ][ 0 ] ) );
+			$values = explode( ',', preg_replace( '/\s+/', '', $values[ 0 ] ) );
 		}
 
-		foreach( $attr[ 'values' ] as $key => $value ) {
-			$text .= "\t" . '<input type="radio"' . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::value( $value ) . ' /> ' . $value . "<br />\n";
+		foreach( $values as $key => $value ) {
+			$text .= "\t" . '<input type="radio"' . Form::name( $name ) . Form::id( $name ) . Form::value( $value ) . ' /> ' . $value . "<br />\n";
 		}
 		
-		return Form::div( $text );
+		echo Form::div( $text );
 	}
 
 	/**
@@ -270,8 +305,12 @@ class Form {
 	 * return string
 	*/
 	public static function reset( $attr = array() ) {
-		$text .= "\t" . '<input type="reset"' . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::tabindex( $attr[ 'tabindex' ] ) . Form::value( $attr[ 'value' ] ) . ' />' . "\n";
-		return Form::div( $text );
+		$text     = '';
+		$name     = isset( $attr[ 'name' ] ) ? $attr[ 'name' ] : '';
+		$tabindex = isset( $attr[ 'tabindex' ] ) ? $attr[ 'tabindex' ] : '';
+		$value    = isset( $attr[ 'value' ] ) ? $attr[ 'value' ] : '';
+		$text .= "\t" . '<input type="reset"' . Form::name( $name ) . Form::id( $name ) . Form::tabindex( $tabindex ) . Form::value( $value ) . ' />' . "\n";
+		echo $text;
 	}
 
 	/**
@@ -293,23 +332,26 @@ class Form {
 	 * return string
 	*/
 	public static function select( $attr = array() ) {
-		$text = Form::label( $attr );
+		$name     = isset( $attr[ 'name' ] ) ? $attr[ 'name' ] : '';
+		$tabindex = isset( $attr[ 'tabindex' ] ) ? $attr[ 'tabindex' ] : '';
+		$values   = isset( $attr[ 'values' ] ) ? $attr[ 'values' ] : '';
+		$text     = Form::label( $attr );
 
-		if( !is_array( $attr[ 'values' ] ) ) {
-			$attr[ 'values' ] = explode( ',', preg_replace( '/\s+/', '', $attr[ 'values' ] ) );
+		if( !is_array( $values ) ) {
+			$values = explode( ',', preg_replace( '/\s+/', '', $values ) );
 		} else {
-			$attr[ 'values' ] = explode( ',', preg_replace( '/\s+/', '', $attr[ 'values' ][ 0 ] ) );
+			$values = explode( ',', preg_replace( '/\s+/', '', $values[ 0 ] ) );
 		}
 
-		$text .= "\t" . '<select' . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::tabindex( $attr[ 'tabindex' ] ) . ">\n";
+		$text .= "\t" . '<select' . Form::name( $name ) . Form::id( $name ) . Form::tabindex( $tabindex ) . ">\n";
 		
-		foreach( $attr[ 'values' ] as $key => $value ) {
+		foreach( $values as $key => $value ) {
 			$text .= "\t\t" . '<option' . Form::value( $value ) . '>' . $value  . "</option>\n";
 		}
 
 		$text .= "\t" . "</select>\n";
 		
-		return Form::div( $text );
+		echo Form::div( $text );
 	}
 
 	/**
@@ -320,7 +362,7 @@ class Form {
 	 * return string
 	*/
 	public static function size( $size ) {
-		return isset( $size ) ? ' size="' . $size . '"' : '';
+		return isset( $size ) && !empty( $size ) ? ' size="' . $size . '"' : '';
 	}
 
 	/**
@@ -331,9 +373,12 @@ class Form {
 	 * return string
 	*/
 	public static function submit( $attr = array() ) {
-		$text = Form::label( $attr );
-		$text .= "\t" . '<input type="submit"' . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::tabindex( $attr[ 'tabindex' ] ) . Form::value( $attr[ 'value' ] ) . ' />' . "\n";
-		return Form::div( $text );
+		$name     = isset( $attr[ 'name' ] ) ? $attr[ 'name' ] : '';
+		$tabindex = isset( $attr[ 'tabindex' ] ) ? $attr[ 'tabindex' ] : '';
+		$value    = isset( $attr[ 'value' ] ) ? $attr[ 'value' ] : '';
+		$text     = '';
+		$text    .= "\t" . '<input type="submit"' . Form::name( $name ) . Form::id( $name ) . Form::tabindex( $tabindex ) . Form::value( $value ) . ' />' . "\n";
+		echo $text;
 	}
 
 	/**
@@ -344,7 +389,7 @@ class Form {
 	 * return string
 	*/
 	public static function tabindex( $tabindex ) {
-		return isset( $tabindex ) ? ' tabindex="' . $tabindex . '"' : '';
+		return isset( $tabindex ) && !empty( $tabindex ) ? ' tabindex="' . $tabindex . '"' : '';
 	}
 
 	/**
@@ -355,9 +400,13 @@ class Form {
 	 * return string
 	*/
 	public static function text( $attr = array() ) {
-		$text = Form::label( $attr );
-		$text .= "\t" . '<input type="text"' . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::size( $attr[ 'size' ] ) . Form::tabindex( $attr[ 'tabindex' ] ) . ' value="" />' . "\n";
-		return Form::div( $text );
+		$name     = isset( $attr[ 'name' ] ) ? $attr[ 'name' ] : '';
+		$size     = isset( $attr[ 'size' ] ) ? $attr[ 'size' ] : '';
+		$tabindex = isset( $attr[ 'tabindex' ] ) ? $attr[ 'tabindex' ] : '';
+		$value    = isset( $attr[ 'value' ] ) ? $attr[ 'value' ] : '';
+		$text     = Form::label( $attr );
+		$text    .= "\t\t" . '<input type="text"' . Form::name( $name ) . Form::id( $name ) . Form::size( $size ) . Form::tabindex( $tabindex ) . Form::value( $value ) . " />\n";
+		echo Form::div( $text );
 	}
 
 	/**
@@ -368,9 +417,13 @@ class Form {
 	 * return string
 	*/
 	public static function textarea( $attr = array() ) {
-		$text = Form::label( $attr );
-		$text .= "\t" . '<textarea' . Form::name( $attr[ 'name' ] ) . Form::id( $attr[ 'name' ] ) . Form::cols( $attr[ 'columns' ] ) . Form::rows( $attr[ 'rows' ] ) . Form::tabindex( $attr[ 'tabindex' ] ) . '></textarea>' . "\n";
-		return Form::div( $text );
+		$name      = isset( $attr[ 'name' ] ) ? $attr[ 'name' ] : '';
+		$columns   = isset( $attr[ 'columns' ] ) ? $attr[ 'columns' ] : '';
+		$rows      = isset( $attr[ 'rows' ] ) ? $attr[ 'rows' ] : '';
+		$tabindex  = isset( $attr[ 'tabindex' ] ) ? $attr[ 'tabindex' ] : '';
+		$text      = Form::label( $attr );
+		$text     .= "\t" . '<textarea' . Form::name( $name ) . Form::id( $name ) . Form::cols( $columns ) . Form::rows( $rows ) . Form::tabindex( $tabindex ) . '></textarea>' . "\n";
+		echo Form::div( $text );
 	}
 
 	/**
@@ -381,7 +434,7 @@ class Form {
 	 * return string
 	*/
 	public static function value( $value ) {
-		return isset( $value ) ? ' value="' . $value . '"' : '';
+		return isset( $value ) && !empty( $value ) ? ' value="' . $value . '"' : '';
 	}
 
 }

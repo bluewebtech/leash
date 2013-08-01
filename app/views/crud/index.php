@@ -3,7 +3,7 @@
 /*
  * Created by: Peter Morrison
  * Date Created: 2013-02-20
- * Date Updated: 2013-07-22
+ * Date Updated: 2013-08-01
  * Sample CRUD application index view.
  */
 
@@ -35,8 +35,6 @@ foreach( $bands as $key => $value ) {
 
 $content .= HTML::nl( '</table>' );
 
-Response::out( 
-	HTML::h1( $title ) . 
-	HTML::p( 'Click ' . HTML::ahref( 'here', 'create' )  . ' to create a new band.' ) . 
-	$content
-);
+echo HTML::h1( $title );
+echo HTML::p( 'Click ' . HTML::ahref( 'here', 'create' )  . ' to create a new band.' );
+echo $content;

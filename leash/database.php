@@ -1188,7 +1188,7 @@ class Database {
 
                             $columns       = implode( ', ', $columns );
                             $column_values = implode( ', ', $column_values );
-                            $where         = $column . " = '" . $item . "'";
+                            //$where         = $column . " = '" . $item . "'";
                             $state         = "UPDATE $table SET $column_values WHERE $id = :$id;";
                             
                             return Database::query( $state, $values );

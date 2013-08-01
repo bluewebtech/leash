@@ -26,7 +26,6 @@ require 'configuration.php';
 require 'create_controller.php';
 require 'create_model.php';
 require 'create_service.php';
-//require 'create_unit_test.php';
 require 'create_view.php';
 require 'generate_all.php';
 require 'examples.php';
