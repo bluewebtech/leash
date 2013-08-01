@@ -41,7 +41,7 @@ class Service {
 		}
 
 		foreach ( $files as $key => $value ) {
-			if( $value != '.' && $value != CD && strpos( $value[ 0 ], '.' ) != 0 ) {
+			if( $value != '.' && $value != CD && strpos( $value, '.' ) != 0 ) {
 
 				try {
 

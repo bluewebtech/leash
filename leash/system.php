@@ -192,8 +192,8 @@ class System {
 		$content = '';
 
 		foreach ( $dir as $key => $value ) {
-			echo $value . "<br />\n";
-			if( $value != '.' && $value != CD && strpos( $value, '.' ) > 0 ) {
+
+			if( $value != '.' && $value != CD && strpos( $value, '.' ) != 0 ) {
 				array_push( $files, $value );
 			}
 
@@ -234,7 +234,7 @@ class System {
 
 		foreach ( $dir as $key => $value ) {
 
-			if( $value != '.' && $value != '..' && strpos( $value[ 0 ], '.' ) != 0 ) {
+			if( $value != '.' && $value != '..' && strpos( $value, '.' ) != 0 ) {
 				array_push( $files, $value );
 			}
 
