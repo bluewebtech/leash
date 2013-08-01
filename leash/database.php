@@ -480,7 +480,7 @@ class Database {
      * return object
     */
     public static function fetchType() {
-        switch( FETCH_TYPE ) {
+        switch( DB_FETCH_TYPE ) {
             case 'class':
                 return PDO::FETCH_CLASS;
             break;

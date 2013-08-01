@@ -132,7 +132,7 @@ if( !Request::is_ajax() ) {
 	if( isset( $GLOBALS[ 'meta_title' ] ) ) {
 		$tags->set( 'title', $GLOBALS[ 'meta_title' ] );
 	} else {
-		$tags->set( 'title', title ( APP_NAME ) );
+		$tags->set( 'title', HTML::title( APP_NAME ) );
 	}
 
 	// -- Get any custom tags that may be available within the /app/tags/ directory

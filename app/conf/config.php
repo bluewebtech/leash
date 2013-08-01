@@ -26,10 +26,9 @@ $config = array(
 	'LOGS_ERROR'         => 'error', 
 	'LOGS_EXT'           => '.log', 
 
-	// -- Datasource query PDO fetch type
-	'FETCH_TYPE'         => 'class', 
-
-	// -- Supported database connectors
+	// -- Datasource
+	'DB_FETCH_TYPE'      => 'class', 
+	'DB_POOLING'         => false, 
 	'DB_CONNECTOR_TYPES' => 'mariadb, 
 							 mongodb, 
 							 mysql, 

@@ -14,7 +14,8 @@ $contant_names = array(
 	'LOGS_ACCESS', 
 	'LOGS_ERROR', 
 	'LOGS_EXT', 
-	'FETCH_TYPE', 
+	'DB_FETCH_TYPE', 
+	'DB_POOLING', 
 	'DB_CONNECTOR_TYPES', 
 	'SESSION_ENABLE', 
 	'SESSION_NAME', 
@@ -57,7 +58,8 @@ define( 'LOGS_PATH',          $config[ 'LOGS_PATH' ] );
 define( 'LOGS_ACCESS',        $config[ 'LOGS_ACCESS' ] );
 define( 'LOGS_ERROR',         $config[ 'LOGS_ERROR' ] );
 define( 'LOGS_EXT',           $config[ 'LOGS_EXT' ] );
-define( 'FETCH_TYPE',         $config[ 'FETCH_TYPE' ] );
+define( 'DB_FETCH_TYPE',      $config[ 'DB_FETCH_TYPE' ] );
+define( 'DB_POOLING',         $config[ 'DB_POOLING' ] );
 define( 'DB_CONNECTOR_TYPES', $config[ 'DB_CONNECTOR_TYPES' ] );
 define( 'SESSION_ENABLE',     $config[ 'SESSION_ENABLE' ] );
 define( 'SESSION_NAME',       $config[ 'SESSION_NAME' ] );
