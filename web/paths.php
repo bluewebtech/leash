@@ -54,14 +54,14 @@ try {
 
 // Build path for framework main
 if( ( $pos = strrpos( DIR , WEB ) ) !== false ) {
-	$main = substr_replace( DIR , SYSTEM , $pos , strlen( WEB ) ) . DS . 'main' . SYSTEM_EXT;
+	$main = substr_replace( DIR , SYSTEM , $pos , strlen( WEB ) ) . DS . 'leash' . SYSTEM_EXT;
 }
 
 // -- Make sure the main.php application file exists before continuing
 try {
 
 	if( !file_exists( $main ) ) {
-		throw new Exception( 'Main application file (main' . SYSTEM_EXT . ') does not exist.' );
+		throw new Exception( 'Main application file (leash' . SYSTEM_EXT . ') does not exist.' );
 	}
 
 } catch( Exception $e ) {

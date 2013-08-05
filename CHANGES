@@ -1,5 +1,9 @@
 - CHANGE LOG -
 
+2013-08-05 - Added by Peter Morrison
+	- Completely rewrote the PHPMailer plugin class. 
+	- Completely rewrote the dBug Plugin class.
+
 2013-08-01 - Added by Peter Morrison
 	- Updated CRUD sample to include new ORM functionality.
 	- Updated the Form class to handle undefined array values.
