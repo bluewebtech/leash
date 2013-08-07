@@ -1,7 +1,9 @@
 log/*
 cache/*
 !.gitignore
-
 leash-framework.sublime-project
 leash-framework.sublime-workspace
-
+*.json
+*.lock
+*.phar
+/vendor/

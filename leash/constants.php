@@ -9,6 +9,7 @@ $contant_names = array(
 	'MOBILE_ENABLE', 
 	'MOBILE_LAYOUT', 
 	'DEBUGGING', 
+	'PHPUNIT', 
 	'LOGGING', 
 	'LOGS_PATH', 
 	'LOGS_ACCESS', 
@@ -53,6 +54,7 @@ define( 'LAYOUT',             $config[ 'LAYOUT' ] );
 define( 'MOBILE_ENABLE',      $config[ 'MOBILE_ENABLE' ] );
 define( 'MOBILE_LAYOUT',      $config[ 'MOBILE_LAYOUT' ] );
 define( 'DEBUGGING',          $config[ 'DEBUGGING' ] );
+define( 'PHPUNIT',            $config[ 'PHPUNIT' ] );
 define( 'LOGGING',            $config[ 'LOGGING' ] );
 define( 'LOGS_PATH',          $config[ 'LOGS_PATH' ] );
 define( 'LOGS_ACCESS',        $config[ 'LOGS_ACCESS' ] );
@@ -83,6 +85,7 @@ define( 'SERVICES_PATH',      APP_ROOT . 'services' . DS );
 define( 'SYSTEM_PATH',        CD . DS . SYSTEM . DS );
 define( 'PLUGINS_PATH',       APP_ROOT . 'plugins' . DS );
 define( 'TAGS_PATH',          APP_ROOT . 'tags' . DS );
+define( 'TEMP_PATH',          APP_ROOT . TEMP . DS );
 define( 'DOCS_ROOT',          'docs' . DS );
 define( 'CLI_ROOT',           CD . DS . 'cli' . DS );
 define( 'EXT_PHP',            $config[ 'EXT_PHP' ] );

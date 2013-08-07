@@ -36,6 +36,7 @@ $class_files = array(
 	SYSTEM_PATH . 'strings' . SYSTEM_EXT, 
 	SYSTEM_PATH . 'system' . SYSTEM_EXT, 
 	SYSTEM_PATH . 'tag' . SYSTEM_EXT, 
+	SYSTEM_PATH . 'unit' . SYSTEM_EXT, 
 	SYSTEM_PATH . 'url' . SYSTEM_EXT, 
 	SYSTEM_PATH . 'view' . SYSTEM_EXT, 
 	SYSTEM_PATH . 'xml' . SYSTEM_EXT, 

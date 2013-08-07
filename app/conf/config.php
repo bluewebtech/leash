@@ -18,6 +18,9 @@ $config = array(
 
 	// -- Enable/disable debugging
 	'DEBUGGING'          => 0, 
+
+	// -- PHPUnit path
+	'PHPUNIT'            => '', 
 	
 	// -- Logging settings
 	'LOGGING'            => 0, 

@@ -1,5 +1,19 @@
 - CHANGE LOG -
 
+2013-08-07 - Added by Peter Morrison
+	- Added support for unit testing with PHPUnit. To enable unit testing with PHPUnit, 
+		the path to the phpunit binary must be defined within config.php. Where to add 
+		the path to the PHPUnit binary should be quite obvious if your eyes are open. 
+		All unit tests will be saved within the /app/tests/ directory which should be 
+		quite obvious as well. All unit tests will only be available for viewing in a 
+		development environment and can be viewing within the browser by visiting 
+		http://<domain>/unit-tests/. All tests can be ran by clicking a test located in 
+		the available list. Currently, no unit tests will be displayed if no tests have 
+		been defined within the /app/tests/ directory. This class will be going under 
+		heavy development for improved results. For tests to be ran in the browser, the 
+		PHP shell_exec function must be enabled. If the shell_exec function is not 
+		enabled, an error will be displayed when trying to execute a test in the browser.
+
 2013-08-05 - Added by Peter Morrison
 	- Completely rewrote the PHPMailer plugin class. 
 	- Completely rewrote the dBug Plugin class.

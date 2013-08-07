@@ -24,6 +24,11 @@ define( 'SYSTEM', 'leash' );
 // ---- be sure to rename the actual directory itself and update the host path.
 define( 'WEB', 'web' );
 
+// -- Temp directory
+// -- You can change the name of the temp directory to whatever you want. Just 
+// ---- be sure to rename the actual directory itself or things will break.
+define( 'TEMP', 'temp' );
+
 // -- Application main configuration path
 define( 'CONF', CD . DS . APP . DS . 'conf' . DS . 'config' . SYSTEM_EXT );
 

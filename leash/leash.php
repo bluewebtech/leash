@@ -112,34 +112,40 @@ if( !Request::is_ajax() ) {
 		$tags = new Tags( LAYOUTS_PATH . LAYOUT . EXT_PHP );
 	}
 
-	// -- Set pre-defined tags
-	$tags->set( 'assets', ASSETS_PATH );
-	$tags->set( 'body', Loader::request( $tags ) );
+	if( Unit::is_unit_test() ) {
+		Unit::unit_test();
+	} else {
+
+		// -- Set pre-defined tags
+		$tags->set( 'assets', ASSETS_PATH );
+		$tags->set( 'body', Loader::request( $tags ) );
+		
+		if( isset( $GLOBALS[ 'meta_description' ] ) ) {
+			$tags->set( 'description', $GLOBALS[ 'meta_description' ] );
+		} else {
+			$tags->set( 'description', '' );
+		}
+
+		if( isset( $GLOBALS[ 'meta_keywords' ] ) ) {
+			$tags->set( 'keywords', $GLOBALS[ 'meta_keywords' ] );
+		} else {
+			$tags->set( 'keywords', '' );
+		}
+
+		// -- Check whether to use the default app name for the page title or a defined title
+		if( isset( $GLOBALS[ 'meta_title' ] ) ) {
+			$tags->set( 'title', $GLOBALS[ 'meta_title' ] );
+		} else {
+			$tags->set( 'title', HTML::title( APP_NAME ) );
+		}
+
+		// -- Get any custom tags that may be available within the /app/tags/ directory
+		$tags->get_tags( $tags );
+
+		// -- Generate and output the application
+		echo $tags->output();
 	
-	if( isset( $GLOBALS[ 'meta_description' ] ) ) {
-		$tags->set( 'description', $GLOBALS[ 'meta_description' ] );
-	} else {
-		$tags->set( 'description', '' );
 	}
-
-	if( isset( $GLOBALS[ 'meta_keywords' ] ) ) {
-		$tags->set( 'keywords', $GLOBALS[ 'meta_keywords' ] );
-	} else {
-		$tags->set( 'keywords', '' );
-	}
-
-	// -- Check whether to use the default app name for the page title or a defined title
-	if( isset( $GLOBALS[ 'meta_title' ] ) ) {
-		$tags->set( 'title', $GLOBALS[ 'meta_title' ] );
-	} else {
-		$tags->set( 'title', HTML::title( APP_NAME ) );
-	}
-
-	// -- Get any custom tags that may be available within the /app/tags/ directory
-	$tags->get_tags( $tags );
-
-	// -- Generate and output the application
-	echo $tags->output();
 
 } else {
 	echo Loader::request();
