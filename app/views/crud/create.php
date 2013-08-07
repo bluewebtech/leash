@@ -22,5 +22,5 @@ if( !isset( $process ) ) {
 
 } else {
 	echo HTML::p( 'Created!' );
-	echo HTML::p( 'Click ' . ahref( 'here', '/crud/' ) . ' to go to band list' );
+	echo HTML::p( 'Click ' . HTML::ahref( 'here', '/crud/' ) . ' to go to band list' );
 }

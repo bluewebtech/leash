@@ -12,7 +12,8 @@
 		been defined within the /app/tests/ directory. This class will be going under 
 		heavy development for improved results. For tests to be ran in the browser, the 
 		PHP shell_exec function must be enabled. If the shell_exec function is not 
-		enabled, an error will be displayed when trying to execute a test in the browser.
+		enabled, an error will be displayed when trying to execute a test in the browser. 
+	- Corrected minor bug in CRUD sample.
 
 2013-08-05 - Added by Peter Morrison
 	- Completely rewrote the PHPMailer plugin class. 
