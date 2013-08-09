@@ -22,11 +22,13 @@ $iframe = array(
 );
 
 echo HTML::h1( APP_NAME );
-echo HTML::h2( 'Available References' );
-echo HTML::iframe( $iframe );
+echo HTML::p( HTML::iframe( $iframe ) );
+
+/*
 echo HTML::ul( $links );
 echo System::list_controllers();
 echo System::list_models();
 echo System::list_plugins();
 echo System::list_services();
 echo System::list_tags();
+*/

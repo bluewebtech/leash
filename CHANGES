@@ -1,5 +1,16 @@
 - CHANGE LOG -
 
+2013-08-09 - Added by Peter Morrison
+	- Continuation of framework documentation development. 
+	- Completely refactored the layouts for both the main application body and the 
+		documentation.
+
+2013-08-08 - Added by Peter Morrison
+	- Began working on revising framework documentation based on all the recent changes. 
+	- Made a change to the controller class to allow the loading of matching controller 
+		view templates. This already existed but was removed in previous versions. This 
+		change also reflects the loading of views when using action method annotations.
+
 2013-08-07 - Added by Peter Morrison
 	- Added support for unit testing with PHPUnit. To enable unit testing with PHPUnit, 
 		the path to the phpunit binary must be defined within config.php. Where to add 

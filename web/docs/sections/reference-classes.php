@@ -1,40 +1,132 @@
-<?php include '../inc/head.php' ?>
-
-<h1>Reference | Core Functions</h1>
+<?php require '../templates/header.php' ?>
+<h1>Reference Classes</h1>
 <p>
 	The following information below is a list of available functions that are built into the 
 	frameworks core which can be used throughout a web site or application.
 </p>
-<ul>
-	<li>
-		<a href="#Datasource">Datasource</a>
-	</li>
-	<li>
-		<a href="#Debugging">Debugging</a>
-	</li>
-	<li>
-		<a href="#Form">Form</a>
-	</li>
-	<li>
-		<a href="#HTML">HTML</a>
-	</li>
-	<li>
-		<a href="#Logging">Logging</a>
-	</li>
-	<li>
-		<a href="#Request">Request</a>
-	</li>
-	<li>
-		<a href="#Security">Security</a>
-	</li>
-	<li>
-		<a href="#String">String</a>
-	</li>
-	<li>
-		<a href="#View">View</a>
-	</li>
-</ul>
-<h2 id="HTML">HTML Core Functions</h2>
+<p>
+	<a href="#Datasource">Datasource</a>, 
+	<a href="#Debugging">Debugging</a>, 
+	<a href="#Form">Form</a>, 
+	<a href="#HTML">HTML</a>, 
+	<a href="#Logging">Logging</a>, 
+	<a href="#Request">Request</a>, 
+	<a href="#Security">Security</a>, 
+	<a href="#String">String</a>, 
+	<a href="#View">View</a>
+</p>
+<h2 id="datasource">Database Class Functions</h2>
+<table width="98%" cellpadding="0" cellspacing="2" border="0">
+	<tr>
+		<th width="150">
+			FUNCTION NAME
+		</th>
+		<th width="300">
+			PARAMETERS
+		</th>
+		<th width="100">
+			RETURN TYPE
+		</th>
+		<th>
+			DESCRIPTION
+		</th>
+	</tr>
+	<tr>
+		<td align="left">
+			Database::datasource()
+		</td>
+		<td align="center">
+			datasource:[string]
+		</td>
+		<td align="center">
+			string
+		</td>
+		<td align="left">
+			Returns a connection to a datasource configured in <span class="path">/app/conf/datasource.php</span>
+		</td>
+	</tr>
+	<tr>
+		<td align="left">
+			Database::dsn()
+		</td>
+		<td align="center">
+			datasource:[string]
+		</td>
+		<td align="center">
+			string
+		</td>
+		<td align="left">
+			Returns a connection to a datasource configured in <span class="path">/app/conf/datasource.php</span>
+		</td>
+	</tr>
+</table>
+
+<h2 id="debugging">Debugging Class Functions</h2>
+<table width="98%" cellpadding="0" cellspacing="2" border="0">
+	<tr>
+		<th width="150">
+			FUNCTION NAME
+		</th>
+		<th width="300">
+			PARAMETERS
+		</th>
+		<th width="100">
+			RETURN TYPE
+		</th>
+		<th>
+			DESCRIPTION
+		</th>
+	</tr>
+	<tr>
+		<td align="left">
+			debugging()
+		</td>
+		<td align="center">
+			n/a
+		</td>
+		<td align="center">
+			n/a
+		</td>
+		<td align="left">
+			Returns a bottom bar containing information about the current controller, view, 
+			load time, post values, get values, and request values.
+		</td>
+	</tr>
+</table>
+<h2 id="form">Form Class Functions</h2>
+<table width="98%" cellpadding="0" cellspacing="2" border="0">
+	<tr>
+		<th width="150">
+			FUNCTION NAME
+		</th>
+		<th width="300">
+			PARAMETERS
+		</th>
+		<th width="100">
+			RETURN TYPE
+		</th>
+		<th>
+			DESCRIPTION
+		</th>
+	</tr>
+	<tr>
+		<td align="left">
+			form()
+		</td>
+		<td align="center">
+			array
+		</td>
+		<td align="center">
+			string
+		</td>
+		<td align="left">
+			This is an internally used function that outputs debugging information 
+			based on the current controller. The debugging function can be turned on 
+			by enabling it within the /app/conf/config.php file.
+		</td>
+	</tr>
+</table>
+<h2 id="html">HTML Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -290,48 +382,6 @@
 	</tr>
 	<tr>
 		<td align="left">
-			o()
-		</td>
-		<td align="center">
-			text:[string]
-		</td>
-		<td align="center">
-			string
-		</td>
-		<td align="left">
-			Outputs the given string to the screen
-		</td>
-	</tr>
-	<tr>
-		<td align="left">
-			out()
-		</td>
-		<td align="center">
-			text:[string]
-		</td>
-		<td align="center">
-			string
-		</td>
-		<td align="left">
-			Outputs the given string to the screen
-		</td>
-	</tr>
-	<tr>
-		<td align="left">
-			output()
-		</td>
-		<td align="center">
-			text:[string]
-		</td>
-		<td align="center">
-			string
-		</td>
-		<td align="left">
-			Outputs the given string to the screen
-		</td>
-	</tr>
-	<tr>
-		<td align="left">
 			p()
 		</td>
 		<td align="center">
@@ -485,107 +535,7 @@
 		</td>
 	</tr>
 </table>
-
-<h2 id="Datasource">Datasource Core Functions</h2>
-<table width="98%" cellpadding="0" cellspacing="2" border="0">
-	<tr>
-		<th width="150">
-			FUNCTION NAME
-		</th>
-		<th width="300">
-			PARAMETERS
-		</th>
-		<th width="100">
-			RETURN TYPE
-		</th>
-		<th>
-			DESCRIPTION
-		</th>
-	</tr>
-	<tr>
-		<td align="left">
-			dataSource()
-		</td>
-		<td align="center">
-			datasource:[string]
-		</td>
-		<td align="center">
-			string
-		</td>
-		<td align="left">
-			Returns a connection to a datasource configured in /app/conf/datasource.php
-		</td>
-	</tr>
-</table>
-
-<h2 id="Debugging">Debugging Core Functions</h2>
-<table width="98%" cellpadding="0" cellspacing="2" border="0">
-	<tr>
-		<th width="150">
-			FUNCTION NAME
-		</th>
-		<th width="300">
-			PARAMETERS
-		</th>
-		<th width="100">
-			RETURN TYPE
-		</th>
-		<th>
-			DESCRIPTION
-		</th>
-	</tr>
-	<tr>
-		<td align="left">
-			debugging()
-		</td>
-		<td align="center">
-			n/a
-		</td>
-		<td align="center">
-			n/a
-		</td>
-		<td align="left">
-			Returns a bottom bar containing information about the current controller, view, 
-			load time, post values, get values, and request values.
-		</td>
-	</tr>
-</table>
-
-<h2 id="Form">Form Core Functions</h2>
-<table width="98%" cellpadding="0" cellspacing="2" border="0">
-	<tr>
-		<th width="150">
-			FUNCTION NAME
-		</th>
-		<th width="300">
-			PARAMETERS
-		</th>
-		<th width="100">
-			RETURN TYPE
-		</th>
-		<th>
-			DESCRIPTION
-		</th>
-	</tr>
-	<tr>
-		<td align="left">
-			form()
-		</td>
-		<td align="center">
-			array
-		</td>
-		<td align="center">
-			string
-		</td>
-		<td align="left">
-			This is an internally used function that outputs debugging information 
-			based on the current controller. The debugging function can be turned on 
-			by enabling it within the /app/conf/config.php file.
-		</td>
-	</tr>
-</table>
-
-<h2 id="Logging">Logging Core Functions</h2>
+<h2 id="logging">Logging Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -617,58 +567,7 @@
 		</td>
 	</tr>
 </table>
-
-<h2 id="View">View Core Functions</h2>
-<table width="98%" cellpadding="0" cellspacing="2" border="0">
-	<tr>
-		<th width="150">
-			FUNCTION NAME
-		</th>
-		<th width="300">
-			PARAMETERS
-		</th>
-		<th width="100">
-			RETURN TYPE
-		</th>
-		<th>
-			DESCRIPTION
-		</th>
-	</tr>
-	<tr>
-		<td align="left">
-			render()
-		</td>
-		<td align="center">
-			text:[string], array
-		</td>
-		<td align="center">
-			string
-		</td>
-		<td align="left">
-			Returns a view template associated with the current controller. Also takes 
-			an array as a second param which makes it possible for values within that array 
-			available to the defined view. Also see the view().
-		</td>
-	</tr>
-	<tr>
-		<td align="left">
-			view()
-		</td>
-		<td align="center">
-			text:[string], array
-		</td>
-		<td align="center">
-			string
-		</td>
-		<td align="left">
-			Returns a view template associated with the current controller. Also takes 
-			an array as a second param which makes it possible for values within that array 
-			available to the defined view. Also see the render().
-		</td>
-	</tr>
-</table>
-
-<h2 id="Request">Request Core Functions</h2>
+<h2 id="request">Request Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -784,7 +683,7 @@
 	</tr>
 </table>
 
-<h2 id="String">String Core Functions</h2>
+<h2 id="string">String Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -988,5 +887,37 @@
 		</td>
 	</tr>
 </table>
-
-<?php include '../inc/foot.php' ?>
+<h2 id="view">View Class Functions</h2>
+<table width="98%" cellpadding="0" cellspacing="2" border="0">
+	<tr>
+		<th width="150">
+			FUNCTION NAME
+		</th>
+		<th width="300">
+			PARAMETERS
+		</th>
+		<th width="100">
+			RETURN TYPE
+		</th>
+		<th>
+			DESCRIPTION
+		</th>
+	</tr>
+	<tr>
+		<td align="left">
+			render()
+		</td>
+		<td align="center">
+			text:[string], array
+		</td>
+		<td align="center">
+			string
+		</td>
+		<td align="left">
+			Returns a view template associated with the current controller. Also takes 
+			an array as a second param which makes it possible for values within that array 
+			available to the defined view. Also see the view().
+		</td>
+	</tr>
+</table>
+<?php require '../templates/footer.php' ?>

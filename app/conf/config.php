@@ -32,12 +32,7 @@ $config = array(
 	// -- Datasource
 	'DB_FETCH_TYPE'      => 'class', 
 	'DB_POOLING'         => false, 
-	'DB_CONNECTOR_TYPES' => 'mariadb, 
-							 mongodb, 
-							 mysql, 
-							 postgresql, 
-							 sqlsrv, 
-							 sqlite', 
+	'DB_CONNECTOR_TYPES' => 'mariadb, mongodb, mysql, postgresql, sqlsrv, sqlite', 
 
 	// -- Session settings
 	'SESSION_ENABLE'     => 1, 

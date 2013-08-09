@@ -1,30 +1,18 @@
-<?php include '../inc/head.php' ?>
-
-<h1>Tags | Pre-defined Tags</h1>
+<?php require '../templates/header.php' ?>
+<h1>Tags</h1>
 <p>
-	By default, the framework consists of a few pre-defined tags that can be used within 
-	any layout and define the output of a tag with simple functions. Listed below are all 
-	of the current pre-defined tags along with examples.
+	Tags are special classes that can be executed by adding textual statements such as 
+	<span class="value">[stuff]</span> to any defined layouts. All tags are stored within the 
+	tags directory located at <span class="path">/app/tags/</span>.
 </p>
-<ul>
-	<li>
-		<a href="#assets">Assets Tag</a>
-	</li>
-	<li>
-		<a href="#body">Body Tag</a>
-	</li>
-	<li>
-		<a href="#description">Description Tag</a>
-	</li>
-	<li>
-		<a href="#keywords">Keywords Tag</a>
-	</li>
-	<li>
-		<a href="#title">Title Tag</a>
-	</li>
-</ul>
-
-<h2 id="assets">Assets Tag</h2>
+<h2 id="pre-defined-tags">Pre-defined Tag</h2>
+<p>
+	The framework comes with a few pre-defined tags that can be utilized in many ways. These 
+	tags are: <a href="#asset">[assets]</a>, <a href="#body">[body]</a>, 
+	<a href="#description">[description]</a>, <a href="#keywords">[keywords]</a>, 
+	<a href="#title">[title]</a>.
+</p>
+<h3>Asset Tag</h3>
 <p>
 	The <span class="value">[assets]</span> tag can be used to help with outputting the path to your 
 	application css, javascript or files assets directory. Below is an example of its use. The default 
@@ -44,20 +32,13 @@
 &lt;link rel="stylesheet" type="text/css" href="/assets/css/main/main.css" /&gt;
 </code>
 </pre>
-
-<h2 id="body">Body Tag</h2>
+<h3 id="body">Body Tag</h3>
 <p>
 	The <span class="value">[body]</span> tag is the main content tag. What this means is that 
-	depending on the content of the current controller and view. All content will be displayed 
-	using this special tag.
+	depending on the content of the current controller and view. All controller and view information 
+	will be outputted by the <span class="value">[body]</span> tag.
 </p>
-<pre>
-<code>
-[body]
-</code>
-</pre>
-
-<h2 id="description">Description Tag</h2>
+<h3 id="description">Description Tag</h3>
 <p>
 	The <span class="value">[description]</span> tag when defined by using the built in function 
 	<span class="value">description()</span> will output the defined text wrapped in meta description 
@@ -71,8 +52,7 @@
 class IndexController {
 
 	public function index() {
-		description( 'Test Description' );
-		view( 'index' );
+		HTML::description( 'Test Description' );
 	}
 
 }
@@ -87,7 +67,7 @@ class IndexController {
 </code>
 </pre>
 
-<h2 id="keywords">Keywords Tag</h2>
+<h3 id="keywords">Keywords Tag</h3>
 <p>
 	The <span class="value">[keywords]</span> tag when defined by using the built in function 
 	<span class="value">keywords()</span> will output the defined text wrapped in meta keywords 
@@ -101,8 +81,7 @@ class IndexController {
 class IndexController {
 
 	public function index() {
-		keywords( 'Frank Sinatra, Dean Martin, Sammy Davis Jr., Peter Lawford, Joey Bishop' );
-		view( 'index' );
+		HTML::keywords( 'Frank Sinatra, Dean Martin, Sammy Davis Jr., Peter Lawford, Joey Bishop' );
 	}
 
 }
@@ -117,7 +96,7 @@ class IndexController {
 </code>
 </pre>
 
-<h2 id="title">Title Tag</h2>
+<h3 id="title">Title Tag</h3>
 <p>
 	The <span class="value">[title]</span> tag when defined by using the built in function 
 	<span class="value">title()</span> will output the defined text wrapped in title tags 
@@ -131,8 +110,7 @@ class IndexController {
 class IndexController {
 
 	public function index() {
-		title( 'Test Title' );
-		view( 'index' );
+		HTML::title( 'Test Title' );
 	}
 
 }
@@ -147,4 +125,40 @@ class IndexController {
 </code>
 </pre>
 
-<?php include '../inc/foot.php' ?>
+
+
+
+
+<h2 id="custom-tags">Custom Tags</h2>
+<p>
+ Tag class file names 
+	can be names any thing you like but the class name must end with the keyword Tag. Below is 
+	an example of how a tag class would be structured.
+
+	The framework supports the ability to define custom tags that can used within layouts and 
+	view templates. 
+</p>
+<p>
+	By default, all custom tags are stored within the <span class="path">/app/tags/</span> 
+	directory.
+</p>
+<pre>
+<code>
+&lt;?php
+
+class HelloTag {
+	
+	public static function hello( $name ) {
+		return 'Hello ' . $name;
+	}
+
+}
+
+$tags->set( 'hello', HelloTag::hello( 'Bob Barker' ) );
+</code>
+</pre>
+<p>
+	The above example would create a new tags called <span class="value">[hello]</span>. This 
+	tag could be placed within a layout and would output the text "Hello Bob Barker".
+</p>
+<?php require '../templates/footer.php' ?>

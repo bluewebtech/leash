@@ -51,10 +51,13 @@ class Loader {
 							$method = ob_get_contents();
 							ob_get_clean();
 
-							return $method;
-
-							// -- Display the default controller action template if the core viex() was not used
-							//return Controller::action_file_get();
+							// -- Check if the View::render() as used
+							if( isset( $_REQUEST[ 'view' ] ) ) {
+								return $method;
+							} else {
+								// -- Display the default controller action template if the core viex() was not used
+								return Controller::action_file_get();
+							}
 
 						} else {
 
@@ -75,7 +78,13 @@ class Loader {
 									$method = ob_get_contents();
 									ob_get_clean();
 
-									return $method;
+									// -- Check if the View::render() as used
+									if( isset( $_REQUEST[ 'view' ] ) ) {
+										return $method;
+									} else {
+										// -- Display the default controller action template if the core viex() was not used
+										return Controller::action_file_get( $annotations_method );
+									}
 
 								} else {
 									// -- Display  the missing controller method error

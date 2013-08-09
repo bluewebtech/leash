@@ -178,6 +178,7 @@ class Controller {
 	public static function action_exists( $class, $action ) {
 		$class = Controller::controller_classname();
 
+		/*
 		try {
 
 			// -- Check if the requested action method exists in the specified controller class
@@ -190,6 +191,14 @@ class Controller {
 
 		} catch( Exception $e ) {
 			Error::message( $e );
+		}
+		*/
+
+		// -- Check if the requested action method exists in the specified controller class
+		if( method_exists( $class, $action ) ) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -207,8 +216,12 @@ class Controller {
 	 *
 	 * return string
 	*/
-	public static function action_file_path() {
-		return VIEWS_PATH . Controller::controller_filename() . '/' . Controller::action_filename() . EXT_PHP;
+	public static function action_file_path( $action = null ) {
+		if( !isset( $action ) ) {
+			return VIEWS_PATH . Controller::controller_filename() . DS . Controller::action_filename() . EXT_PHP;
+		} else {
+			return VIEWS_PATH . Controller::controller_filename() . DS . $action . EXT_PHP;
+		}
 	}
 
 	/** 
@@ -216,8 +229,8 @@ class Controller {
 	 *
 	 * return boolean
 	*/
-	public static function action_file_exists() {
-		return file_exists( Controller::action_file_path() );
+	public static function action_file_exists( $action = null ) {
+		return file_exists( Controller::action_file_path( $action ) );
 	}
 
 	/** 
@@ -226,12 +239,19 @@ class Controller {
 	 *
 	 * return string
 	*/
-	public static function action_file_get() {
-		if( Controller::action_file_exists() && !View::view_isset() ) {
+	public static function action_file_get( $action = null ) {
+		if( Controller::action_file_exists( $action ) && !View::view_isset() ) {
 			
 			ob_start();
-			include Controller::action_file_path();
+
+			if( !isset( $action ) ) {
+				include Controller::action_file_path();
+			} else {
+				include Controller::action_file_path( $action );
+			}
+
 			$action = ob_get_contents();
+			
 			ob_get_clean();
 			
 			return $action;

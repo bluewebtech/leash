@@ -1,12 +1,16 @@
-<?php include '../inc/head.php' ?>
-
-<h1>Reference | Configuration</h1>
+<?php require '../templates/header.php' ?>
+<h1>Reference Configuration</h1>
 <p>
 	The following information describes all configuration settings broken down based on 
 	the following configuration files: <a href="#config">config.php</a>, <a href="#datasource">
 	datasource.php</a>, and <a href="#mail">mail.php</a>.
 </p>
-<h2 id="config">General Configuration [/app/conf/config.php]</h2>
+<h2 id="config">Configuration [/app/conf/config.php]</h2>
+<p>
+	The framework configuration is incredibly easy to manage and make changes to. Once a change 
+	has been made to any configuration, it will automatically be set throughout an application 
+	without the need to restart the server.
+</p>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th>
@@ -146,6 +150,23 @@
 	</tr>
 	<tr>
 		<td align="left">
+			PHPUNIT
+		</td>
+		<td align="center">
+			&lt;path-to-phpunit-binary&gt;
+		</td>
+		<td align="center">
+			[blank]
+		</td>
+		<td align="center">
+			string
+		</td>
+		<td align="left">
+			Enables the use of PHPUnit.
+		</td>
+	</tr>
+	<tr>
+		<td align="left">
 			LOGGING
 		</td>
 		<td align="center">
@@ -197,6 +218,23 @@
 	</tr>
 	<tr>
 		<td align="left">
+			LOGS_ERROR
+		</td>
+		<td align="center">
+			error
+		</td>
+		<td align="center">
+			error
+		</td>
+		<td align="center">
+			string
+		</td>
+		<td align="left">
+			Error log file name.
+		</td>
+	</tr>
+	<tr>
+		<td align="left">
 			LOGS_EXT
 		</td>
 		<td align="center">
@@ -227,6 +265,40 @@
 		</td>
 		<td align="left">
 			Datasource query PDO fetch type.
+		</td>
+	</tr>
+	<tr>
+		<td align="left">
+			DB_POOLING
+		</td>
+		<td align="center">
+			1/0 or true/false 
+		</td>
+		<td align="center">
+			false
+		</td>
+		<td align="center">
+			boolean
+		</td>
+		<td align="left">
+			Persistent database connections for supported datasources.
+		</td>
+	</tr>
+	<tr>
+		<td align="left">
+			DB_CONNECTOR_TYPES
+		</td>
+		<td align="center">
+			supported database servers
+		</td>
+		<td align="center">
+			list
+		</td>
+		<td align="center">
+			string
+		</td>
+		<td align="left">
+			List of supported databases.
 		</td>
 	</tr>
 	<tr>
@@ -384,6 +456,23 @@
 	</tr>
 	<tr>
 		<td align="left">
+			ASSETS_PATH
+		</td>
+		<td align="center">
+			/assets/
+		</td>
+		<td align="center">
+			/assets/
+		</td>
+		<td align="center">
+			string
+		</td>
+		<td align="left">
+			Path to assests root directory.
+		</td>
+	</tr>
+	<tr>
+		<td align="left">
 			EXT_PHP
 		</td>
 		<td align="center">
@@ -419,7 +508,6 @@
 		</td>
 	</tr>
 </table>
-
 <pre>
 <code>
 &lt;?php
@@ -442,15 +530,21 @@ $config = array(
 
 	// -- Enable/disable debugging
 	'DEBUGGING'          => 0, 
+
+	// -- PHPUnit path
+	'PHPUNIT'            => '', 
 	
 	// -- Logging settings
 	'LOGGING'            => 0, 
 	'LOGS_PATH'          => 'logs', 
 	'LOGS_ACCESS'        => 'access', 
+	'LOGS_ERROR'         => 'error', 
 	'LOGS_EXT'           => '.log', 
 
-	// -- Datasource query PDO fetch type
-	'FETCH_TYPE'         => 'class', 
+	// -- Datasource
+	'DB_FETCH_TYPE'      => 'class', 
+	'DB_POOLING'         => false, 
+	'DB_CONNECTOR_TYPES' => 'mariadb, mongodb, mysql, postgresql, sqlsrv, sqlite', 
 
 	// -- Session settings
 	'SESSION_ENABLE'     => 1, 
@@ -477,8 +571,10 @@ $config = array(
 );
 </code>
 </pre>
-
 <h2 id="datasource">Datasource Configuration [/app/conf/datasource.php]</h2>
+<p>
+	All PHP datasources are executed using the PHP PDO class.
+</p>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th>
@@ -523,9 +619,11 @@ $config = array(
 		</td>
 	</tr>
 </table>
-
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
+		<th>
+			SERVER
+		</th>
 		<th>
 			ENGINE
 		</th>
@@ -550,6 +648,9 @@ $config = array(
 			MariaDB / MySQL
 		</td>
 		<td align="center">
+			mariadb or mysql
+		</td>
+		<td align="center">
 			string
 		</td>
 		<td align="center">
@@ -567,7 +668,33 @@ $config = array(
 	</tr>
 	<tr>
 		<td align="left">
-			SQL Server
+			MongoDB
+		</td>
+		<td align="center">
+			mongodb
+		</td>
+		<td align="center">
+			n/a
+		</td>
+		<td align="center">
+			n/a
+		</td>
+		<td align="center">
+			n/a
+		</td>
+		<td align="center">
+			n/a
+		</td>
+		<td align="center">
+			string
+		</td>
+	</tr>
+	<tr>
+		<td align="left">
+			PostgreSQL
+		</td>
+		<td align="center">
+			postgresql
 		</td>
 		<td align="center">
 			string
@@ -590,6 +717,9 @@ $config = array(
 			SQLite
 		</td>
 		<td align="center">
+			sqlite
+		</td>
+		<td align="center">
 			n/a
 		</td>
 		<td align="center">
@@ -605,14 +735,36 @@ $config = array(
 			string
 		</td>
 	</tr>
+	<tr>
+		<td align="left">
+			SQL Server
+		</td>
+		<td align="center">
+			sqlsrv
+		</td>
+		<td align="center">
+			string
+		</td>
+		<td align="center">
+			int
+		</td>
+		<td align="center">
+			string
+		</td>
+		<td align="center">
+			string
+		</td>
+		<td align="center">
+			string
+		</td>
+	</tr>
 </table>
-
 <pre>
 <code>
 &lt;?php
 
-// -- Supported database engines are: mariadb, mysql, postgresql, sqlsrv, sqlite
-$dataSource = array(
+// -- Supported database engines are: mariadb, mysql, mongodb, postgresql, sqlsrv, sqlite
+$datasource = array(
 
 	// -- Development datasources
 	'development' => array(
@@ -719,8 +871,11 @@ $dataSource = array(
 );
 </code>
 </pre>
-
 <h2 id="mail">Mail Configuration [/app/conf/mail.php]</h2>
+<p>
+	The mail configuration is utilized by the pre-installed mail plugin and known PHP mail library 
+	<a href="http://phpmailer.worxware.com/" title="PHPMailer" target="_blank">PHPMailer</a>.
+</p>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th>
@@ -765,7 +920,6 @@ $dataSource = array(
 		</td>
 	</tr>
 </table>
-
 <pre>
 <code>
 &lt;?php
@@ -799,5 +953,4 @@ $mail = array(
 );
 </code>
 </pre>
-
-<?php include '../inc/foot.php' ?>
+<?php require '../templates/footer.php' ?>
