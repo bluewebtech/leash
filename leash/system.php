@@ -3,70 +3,14 @@
 class System {
 
 	/**
-     * Lists all app files
+     * Returns an array of all available controllers
      *
-     * return void
-    */
-	public static function list_all() {
-		$dir     = scandir( APP_ROOT . CONTROLLERS_PATH );
-		$files   = array();
-		$content = '';
-
-		foreach ( $dir as $key => $value ) {
-
-			if( $value != '.' && $value != CD ) {
-				array_push( $files, $value );
-			}
-
-		}
-
-		$content .= "<ul>\n";
-
-		foreach ( $files as $key => $value ) {
-			
-			if( $value != '.' && $value != CD ) {
-				
-				$controller = str_replace( EXT_PHP, '', $value );
-				$class      = ucfirst( str_replace( EXT_PHP, '', $value ) );
-				$content   .= "\t<li>\n";
-				$content   .= "\t\t" . '<a href="' . '/' . $controller . '">' . $class . "Controller</a>\n";
-				$content   .= "\t</li>\n";
-				$view_dir   = scandir( APP_ROOT . VIEWS_PATH . $controller );
-				$view_files = array();
-
-				foreach( $view_dir as $view_key => $view_value) {
-
-					$content .= "\t<ul>\n";
-
-					if( $view_value != '.' && $view_value != CD ) {
-						$view     = str_replace( EXT_PHP, '', $view_value );
-						$content .= "\t<li>\n";
-						$content .= "\t\t" . '<a href="' . '/' .$controller . '/' . $view . '">' . $view_value . "</a>\n";
-						$content .= "\t</li>\n";
-					}
-
-					$content .= "\t</ul>\n";
-
-				}
-				
-			}
-
-		}
-
-		$content .= "</ul>\n";
-
-		return $content;
-	}
-
-	/**
-     * Lists all available controllers
-     *
-     * return string
+     * return array
     */
 	public static function list_controllers() {
 		$dir     = scandir( APP_ROOT . CONTROLLERS_PATH );
 		$files   = array();
-		$content = '';
+		$control = array();
 
 		foreach ( $dir as $key => $value ) {
 
@@ -77,37 +21,32 @@ class System {
 		}
 
 		if( count( $files ) > 0 ) {
-
-			$content .= "<h2>Controllers</h2>\n";
-			$content .= "<ul>\n";
 
 			foreach ( $files as $key => $value ) {
 
 				if( $value != '.' && $value != CD ) {
 					$controller = str_replace( EXT_PHP, '', $value );
-					$class      = ucfirst( str_replace( EXT_PHP, '', $value ) );
-					$content .= "\t<li>\n";
-					$content .= "\t\t" . '<a href="/' . $controller . '/">' . $class . "Controller</a>\n";
-					$content .= "\t</li>\n";
+					$class      = ucfirst( str_replace( EXT_PHP, '', $value ) . 'Controller' );
+
+					$control[ $controller ] = $controller;
+					$control[ $controller ] = $class;
 				}
 
 			}
-
-			$content .= "</ul>\n";
 		}
 
-		return $content;
+		return $control;
 	}
 
 	/**
-     * Lists all available plugins
+     * Returns an array of all available models
      *
-     * return void
+     * return array
     */
 	public static function list_models() {
-		$dir     = scandir( APP_ROOT . MODELS_PATH );
-		$files   = array();
-		$content = '';
+		$dir    = scandir( APP_ROOT . MODELS_PATH );
+		$files  = array();
+		$models = array();
 
 		foreach ( $dir as $key => $value ) {
 
@@ -119,36 +58,28 @@ class System {
 
 		if( count( $files ) > 0 ) {
 
-			$content .= "<h2>Models</h2>\n";
-			$content .= "<ul>\n";
-
 			foreach ( $files as $key => $value ) {
 
 				if( $value != '.' && $value != CD ) {
-					$plugin   = str_replace( EXT_PHP, '', $value );
-					$class    = ucfirst( str_replace( EXT_PHP, '', $value ) );
-					$content .= "\t<li>\n";
-					$content .= "\t\t" . $class . "\n";
-					$content .= "\t</li>\n";
+					$models[] = ucfirst( str_replace( EXT_PHP, '', $value ) . 'Model' );
 				}
 
 			}
 
-			$content .= "</ul>\n";
 		}
 
-		return $content;
+		return $models;
 	}
 
 	/**
-     * Lists all available plugins
+     * Returns an array of all available plugins
      *
-     * return void
+     * return array
     */
 	public static function list_plugins() {
 		$dir     = scandir( APP_ROOT . PLUGINS_PATH );
 		$files   = array();
-		$content = '';
+		$plugins = array();
 
 		foreach ( $dir as $key => $value ) {
 
@@ -160,36 +91,28 @@ class System {
 
 		if( count( $files ) > 0 ) {
 
-			$content .= "<h2>Plugins</h2>\n";
-			$content .= "<ul>\n";
-
 			foreach ( $files as $key => $value ) {
 
 				if( $value != '.' && $value != CD ) {
-					$plugin   = str_replace( EXT_PHP, '', $value );
-					$class    = ucfirst( str_replace( EXT_PHP, '', $value ) );
-					$content .= "\t<li>\n";
-					$content .= "\t\t" . $class . "\n";
-					$content .= "\t</li>\n";
+					$plugins[] = ucfirst( str_replace( EXT_PHP, '', $value ) );
 				}
 
 			}
 
-			$content .= "</ul>\n";
 		}
 
-		return $content;
+		return $plugins;
 	}
 
 	/**
-     * Lists all available controllers
+     * Returns an array of all available services
      *
-     * return void
+     * return array
     */
 	public static function list_services() {
-		$dir     = scandir( APP_ROOT . SERVICES_PATH );
-		$files   = array();
-		$content = '';
+		$dir      = scandir( APP_ROOT . SERVICES_PATH );
+		$files    = array();
+		$services = array();
 
 		foreach ( $dir as $key => $value ) {
 
@@ -201,36 +124,28 @@ class System {
 
 		if( count( $files ) > 0 ) {
 
-			$content .= "<h2>Services</h2>\n";
-			$content .= "<ul>\n";
-
 			foreach ( $files as $key => $value ) {
 
 				if( $value != '.' && $value != CD ) {
-					$service  = str_replace( EXT_PHP, '', $value );
-					$class    = ucfirst( str_replace( EXT_PHP, '', $value ) );
-					$content .= "\t<li>\n";
-					$content .= "\t\t" . $class . "Service\n";
-					$content .= "\t</li>\n";
+					$services[] = ucfirst( str_replace( EXT_PHP, '', $value ) ) . 'Service';
 				}
 
 			}
 
-			$content .= "</ul>\n";
 		}
 
-		return $content;
+		return $services;
 	}
 
 	/**
-     * Lists all available tags
+     * Returns an array of all available tags
      *
-     * return void
+     * return array
     */
 	public static function list_tags() {
 		$dir     = scandir( APP_ROOT . TAGS_PATH );
 		$files   = array();
-		$content = '';
+		$tags    = array();
 
 		foreach ( $dir as $key => $value ) {
 
@@ -242,25 +157,17 @@ class System {
 
 		if( count( $files ) > 0 ) {
 
-			$content .= "<h2>Tags</h2>\n";
-			$content .= "<ul>\n";
-
 			foreach ( $files as $key => $value ) {
 
 				if( $value != '.' && $value != CD ) {
-					$plugin   = str_replace( EXT_PHP, '', $value );
-					$class    = ucfirst( str_replace( EXT_PHP, '', $value ) );
-					$content .= "\t<li>\n";
-					$content .= "\t\t" . $class . "\n";
-					$content .= "\t</li>\n";
+					$tags[] = ucfirst( str_replace( EXT_PHP, '', $value ) ) . 'Tag';
 				}
 
 			}
 
-			$content .= "</ul>\n";
 		}
 
-		return $content;
+		return $tags;
 	}
 
 	/**

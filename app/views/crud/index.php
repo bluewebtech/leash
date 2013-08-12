@@ -3,7 +3,7 @@
 /*
  * Created by: Peter Morrison
  * Date Created: 2013-02-20
- * Date Updated: 2013-08-01
+ * Date Updated: 2013-08-12
  * Sample CRUD application index view.
  */
 
@@ -27,14 +27,14 @@ foreach( $bands as $key => $value ) {
 		$content .= HTML::nl( '<td>' . $value->band . '</td>' );
 		$content .= HTML::nl( '<td align="center">' . $value->date_created . '</td>' );
 		$content .= HTML::nl( '<td align="center">' . $value->date_updated . '</td>' );
-		$content .= HTML::nl( '<td align="center">' . HTML::ahref( 'Read', 'read/' . $value->id, 'Read ' . $value->band ) . '</td>' );
-		$content .= HTML::nl( '<td align="center">' . HTML::ahref( 'Update', 'update/' . $value->id, 'Update ' . $value->band ) . '</td>' );
-		$content .= HTML::nl( '<td align="center">' . HTML::ahref( 'Delete', 'delete/' . $value->id, 'Delete ' . $value->band ) . '</td>' );
+		$content .= HTML::nl( '<td align="center">' . HTML::ahref( 'Read', '/crud/read/' . $value->id, 'Read ' . $value->band ) . '</td>' );
+		$content .= HTML::nl( '<td align="center">' . HTML::ahref( 'Update', '/crud/update/' . $value->id, 'Update ' . $value->band ) . '</td>' );
+		$content .= HTML::nl( '<td align="center">' . HTML::ahref( 'Delete', '/crud/delete/' . $value->id, 'Delete ' . $value->band ) . '</td>' );
 	$content .= HTML::nl( '</tr>' );
 }
 
 $content .= HTML::nl( '</table>' );
 
 echo HTML::h1( $title );
-echo HTML::p( 'Click ' . HTML::ahref( 'here', 'create' )  . ' to create a new band.' );
+echo HTML::p( 'Click ' . HTML::ahref( 'here', '/crud/create/' )  . ' to create a new band.' );
 echo $content;

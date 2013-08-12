@@ -62,8 +62,24 @@ table td {
 	border: 1px solid #C2C2C2;
 }
 
+ul {
+	margin: 0 0 0 20px;
+	padding: 10px;
+	font-size: 13px;
+}
+
+.constant {
+	color: #1B8EE0;
+	font-weight: bold;
+}
+
 .file {
 	color: #FF7700;
+	font-weight: bold;
+}
+
+.method {
+	color: #E01B1B;
 	font-weight: bold;
 }
 
@@ -101,6 +117,44 @@ table td {
 	z-index: 999999999999;
 }
 
+#header #navigation ul {
+	margin: 0;
+	padding: 0;
+	width: 200px;
+	text-align: center;
+	list-style-type: none;
+	text-align: center;
+	text-transform: uppercase;
+	float: left;
+}
+
+#header #navigation a {
+	font-size: 15px;
+	padding: 5px 10px;
+	float: left;
+	text-decoration: none;
+	color: #333333;
+}
+
+#header #navigation a:hover {
+	font-size: 15px;
+	padding: 5px 10px;
+	color: #ffffff;
+	background-color: #333333;
+	-webkit-border-radius: 0 10px 0 0;
+	-moz-border-radius: 0 10px 0 0;
+	border-radius: 0 0 10px 0;
+}
+
+#header #navigation a:active {
+	font-size: 15px;
+	padding: 5px 10px;
+	background-color: #0e7ee7;
+	-webkit-border-radius: 0 10px 0 0;
+	-moz-border-radius: 0 10px 0 0;
+	border-radius: 0 0 10px 0;
+}
+
 #header #search {
 	margin: 0 5px;
 	float: right;
@@ -132,7 +186,7 @@ table td {
 	height: 131px;
 }
 
-#navigation {
+#sidebar {
 	margin: 0 5px 5px 5px;
 	padding: 5px;
 	width: 250px;
@@ -144,27 +198,27 @@ table td {
 	float: left;
 }
 
-#navigation ul {
+#sidebar ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-#navigation a, #navigation h2 {
+#sidebar a, #sidebar h2 {
 	display: block;
 	margin: 0;
 	padding: 5px 8px;
 	text-decoration: none;
 }
 
-#navigation h2 {
+#sidebar h2 {
 	font-size: 14px;
 	font-weight: normal;
 	padding: 0;
 	border-bottom: 1px solid #ffffff;
 }
 
-#navigation h2 a {
+#sidebar h2 a {
 	color: #ffffff;
 	background: #444444;
 	border: none;
@@ -178,7 +232,7 @@ table td {
 	border-radius: 0 0 10px 0;
 }
 
-#navigation h2 a:hover {
+#sidebar h2 a:hover {
 	color: #ffffff;
 	background: #333333;
 	border: none;
@@ -189,7 +243,7 @@ table td {
 	text-transform: uppercase;
 }
 
-#navigation ul li ul li a {
+#sidebar ul li ul li a {
 	font-size: 13px;
 	font-weight: normal;
 	color: #ffffff;
@@ -203,7 +257,7 @@ table td {
 	border-radius: 0 0 10px 0;
 }
 
-#navigation a:hover {
+#sidebar a:hover {
 	font-size: 13px;
 	font-weight: normal;
 	color: #ffffff;
@@ -213,8 +267,9 @@ table td {
 	border-bottom: 1px solid #ffffff;
 }
 
-#navigation li {
+#sidebar li {
 	position: relative;
+	font-size: 13px;
 }
 
 #content_holder {

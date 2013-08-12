@@ -1,4 +1,3 @@
-<?php require '../templates/header.php' ?>
 <h1>File</h1>
 <p>
 	The File class contains many methods to handle file actions easy. Available file actions 
@@ -6,7 +5,7 @@
 	<a href="#move">Move</a>, <a href="#rename">Rename</a>, <a href="#read">Read</a>, 
 	<a href="#upload">Upload</a>, <a href="#write">Write</a>
 </p>
-<h2 id="append">Append</h2>
+<h2 id="append">&#43; Append</h2>
 <p>
 	The append file class method appends text from the content parameter to a specific file 
 	defined in the destination parameter.
@@ -15,7 +14,7 @@
 <code>
 &lt;?php
 
-$content = "I LOVE SOUTH CAROLINA\n";
+$content = "HAPPY TIMES!\n";
 $append = File::append( 
 	array(
 		'destination' => $_SERVER[ 'DOCUMENT_ROOT' ] . 'assets/files/file.txt', 
@@ -26,7 +25,7 @@ $append = File::append(
 Dbug::dump( $append );
 </code>
 </pre>
-<h2 id="copy">Copy</h2>
+<h2 id="copy">&#43; Copy</h2>
 <p>
 	The copy file class method copies a specific file defined in the source parameter to the 
 	specified location defined in the destination parameter.
@@ -46,7 +45,7 @@ Dbug::dump( $copy );
 </code>
 </pre>
 
-<h2 id="delete">Delete</h2>
+<h2 id="delete">&#43; Delete</h2>
 <p>
 	The delete file class method deletes the specific file defined within the source parameter.
 </p>
@@ -62,7 +61,7 @@ Dbug::dump( $delete );
 </code>
 </pre>
 
-<h2 id="move">Move</h2>
+<h2 id="move">&#43; Move</h2>
 <p>
 	The move file class method moves a specific file defined in the source parameter to the 
 	specified location specified within the destination parameter.
@@ -82,7 +81,7 @@ Dbug::dump( $move );
 </code>
 </pre>
 
-<h2 id="read">Read</h2>
+<h2 id="read">&#43; Read</h2>
 <p>
 	The read file class method reads a specific file defined within the source parameter.
 </p>
@@ -98,7 +97,7 @@ Dbug::dump( $read );
 </code>
 </pre>
 
-<h2 id="rename">Rename</h2>
+<h2 id="rename">&#43; Rename</h2>
 <p>
 	The rename file class method renames the defined file in the source parameter to the defined 
 	file defined within the destination parameter.
@@ -118,7 +117,7 @@ Dbug::dump( $rename );
 </code>
 </pre>
 
-<h2 id="upload">Upload</h2>
+<h2 id="upload">&#43; Upload</h2>
 <p>
 	The upload file class method handles the uploading of all files based on specified parameters.
 </p>
@@ -223,7 +222,7 @@ Dbug::dump( $upload );
 </code>
 </pre>
 
-<h2 id="write">Write</h2>
+<h2 id="write">&#43; Write</h2>
 <p>
 	The write file class method creates a new file specified in the destination parameter and 
 	saves it to the path specified in the destination and populates the file with the content 
@@ -233,7 +232,7 @@ Dbug::dump( $upload );
 <code>
 &lt;?php
 
-$content = "I HATE NEW JERSEY\n";
+$content = "HAPPY TIMES!\n";
 $write = File::write( 
 	array(
 		'destination' => $_SERVER[ 'DOCUMENT_ROOT' ] . 'assets/files/file.txt', 
@@ -246,4 +245,3 @@ Dbug::dump( $write );
 </pre>
 
 <br />
-<?php require '../templates/footer.php' ?>

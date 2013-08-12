@@ -1,7 +1,6 @@
-<?php require '../templates/header.php' ?>
 <h1>Models</h1>
 <p>
-	Models are class files that are stored in the models directory located at /app/models/ 
+	Models are class files that are stored in the models directory located at <span class="path">/app/models/</span> 
 	that have a class name ending with the Model keyword. For instance if you could have a 
 	model file called stuff, the class name would then be StuffModel.
 </p>
@@ -56,4 +55,3 @@ class ContactModel {
 </code>
 </pre>
 <br />
-<?php require '../templates/footer.php' ?>

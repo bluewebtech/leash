@@ -1,11 +1,10 @@
-<?php require '../templates/header.php' ?>
 <h1>Reference Configuration</h1>
 <p>
 	The following information describes all configuration settings broken down based on 
 	the following configuration files: <a href="#config">config.php</a>, <a href="#datasource">
 	datasource.php</a>, and <a href="#mail">mail.php</a>.
 </p>
-<h2 id="config">Configuration [/app/conf/config.php]</h2>
+<h2 id="config">&#43; Configuration [/app/conf/config.php]</h2>
 <p>
 	The framework configuration is incredibly easy to manage and make changes to. Once a change 
 	has been made to any configuration, it will automatically be set throughout an application 
@@ -571,7 +570,7 @@ $config = array(
 );
 </code>
 </pre>
-<h2 id="datasource">Datasource Configuration [/app/conf/datasource.php]</h2>
+<h2 id="datasource">&#43; Datasource Configuration [/app/conf/datasource.php]</h2>
 <p>
 	All PHP datasources are executed using the PHP PDO class.
 </p>
@@ -871,7 +870,7 @@ $datasource = array(
 );
 </code>
 </pre>
-<h2 id="mail">Mail Configuration [/app/conf/mail.php]</h2>
+<h2 id="mail">&#43; Mail Configuration [/app/conf/mail.php]</h2>
 <p>
 	The mail configuration is utilized by the pre-installed mail plugin and known PHP mail library 
 	<a href="http://phpmailer.worxware.com/" title="PHPMailer" target="_blank">PHPMailer</a>.
@@ -953,4 +952,3 @@ $mail = array(
 );
 </code>
 </pre>
-<?php require '../templates/footer.php' ?>

@@ -16,6 +16,16 @@ img {
 	padding: 0;
 }
 
+iframe {
+	margin: 10px;
+	padding: 10px;
+	background: #333333;
+	border: 5px solid #2364CC;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
 pre { 
 	margin: 10px;
 	padding: 0 0 0 15px;
@@ -61,7 +71,7 @@ table td {
 	border: 1px solid #C2C2C2;
 }
 
-.file {
+.method {
 	color: #FF7700;
 	font-weight: bold;
 }
@@ -100,7 +110,7 @@ table td {
 	z-index: 999999999999;
 }
 
-#header #nav ul {
+#header #navigation ul {
 	margin: 0;
 	width: 600px;
 	text-align: center;
@@ -109,7 +119,7 @@ table td {
 	text-transform: uppercase;
 }
 
-#header #nav a {
+#header #navigation a {
 	font-size: 15px;
 	padding: 5px 10px;
 	float: left;
@@ -117,7 +127,7 @@ table td {
 	color: #333333;
 }
 
-#header #nav a:hover {
+#header #navigation a:hover {
 	font-size: 15px;
 	padding: 5px 10px;
 	color: #ffffff;
@@ -127,7 +137,7 @@ table td {
 	border-radius: 0 0 10px 0;
 }
 
-#header #nav a:active {
+#header #navigation a:active {
 	font-size: 15px;
 	padding: 5px 10px;
 	background-color: #0e7ee7;
@@ -168,7 +178,7 @@ table td {
 	height: 131px;
 }
 
-#navigation {
+#sidebar {
 	margin: 0 5px 5px 5px;
 	padding: 5px;
 	width: 250px;
@@ -180,27 +190,27 @@ table td {
 	float: left;
 }
 
-#navigation ul {
+#sidebar ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-#navigation a, #navigation h2 {
+#sidebar a, #sidebar h2 {
 	display: block;
 	margin: 0;
 	padding: 5px 8px;
 	text-decoration: none;
 }
 
-#navigation h2 {
+#sidebar h2 {
 	font-size: 14px;
 	font-weight: normal;
 	padding: 0;
 	border-bottom: 1px solid #ffffff;
 }
 
-#navigation h2 a {
+#sidebar h2 a {
 	color: #ffffff;
 	background: #444444;
 	border: none;
@@ -214,7 +224,7 @@ table td {
 	border-radius: 0 0 10px 0;
 }
 
-#navigation h2 a:hover {
+#sidebar h2 a:hover {
 	color: #ffffff;
 	background: #333333;
 	border: none;
@@ -225,7 +235,7 @@ table td {
 	text-transform: uppercase;
 }
 
-#navigation ul li ul li a {
+#sidebar ul li ul li a {
 	font-size: 13px;
 	font-weight: normal;
 	color: #ffffff;
@@ -239,7 +249,7 @@ table td {
 	border-radius: 0 0 10px 0;
 }
 
-#navigation a:hover {
+#sidebar a:hover {
 	font-size: 13px;
 	font-weight: normal;
 	color: #ffffff;
@@ -249,7 +259,7 @@ table td {
 	border-bottom: 1px solid #ffffff;
 }
 
-#navigation li {
+#sidebar li {
 	position: relative;
 }
 

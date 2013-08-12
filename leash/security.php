@@ -50,6 +50,33 @@ class Security {
 
 			if( isset( $_SESSION[ CSRF_TOKEN_NAME ] ) ) {
 				// -- Return the csrf hidden form field
+				return $_SESSION[ CSRF_TOKEN_NAME ];
+			}
+
+		}
+	}
+
+	/**
+     * Returns a csrf hidden form field and defines a session value containing a matching 
+     * csrf token string value
+     *
+     * return void
+    */
+	public static function csrf_field() {
+		// -- Check if csrf protection has been enabled in config.php and a csrf token 
+		// -- name has been set.
+		if( CSRF_PROTECT && strlen( CSRF_TOKEN_NAME ) > 0 ) {
+			
+			// -- Set a csrf token value
+			$token = Security::csrf_token();
+
+			if( !isset( $_SESSION[ CSRF_TOKEN_NAME ] ) ) {
+				// -- Define the session csrf token value
+				$_SESSION[ CSRF_TOKEN_NAME ] = $token;
+			}
+
+			if( isset( $_SESSION[ CSRF_TOKEN_NAME ] ) ) {
+				// -- Return the csrf hidden form field
 				echo '<input type="hidden" name="' . CSRF_TOKEN_NAME . '" id="' . CSRF_TOKEN_NAME . '" value="' . $_SESSION[ CSRF_TOKEN_NAME ] . '" />' . "\n";
 			}
 

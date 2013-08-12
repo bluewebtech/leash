@@ -1,4 +1,3 @@
-<?php require '../templates/header.php' ?>
 <h1>Getting Started</h1>
 <p>
 	This getting started section will help with understanding the basics of the framework that 
@@ -13,8 +12,8 @@
 <h2 id="installation">&#43; Installation</h2>
 <p>
 	Unzip the framework into a new web root and set up a new host or virtual host. Be sure to 
-	specify the /web/ directory as the default document root. Restart the web server service 
-	and visit the new host in a browser.
+	specify the <span class="path">/web/</span> directory as the default document root. Restart 
+	the web server service and visit the new host in a browser.
 </p>
 <h2 id="local-development-setup">&#43; Local Development Setup</h2>
 <p>
@@ -23,12 +22,13 @@
 </p>
 <p>
 	For Windows, the path to the hosts file is typically something similar to 
-	C:\WINDOWS\system32\drivers\etc. Also, if you're running Windows Vista, 7, or 9, be sure 
-	to open the hosts file with administrative privileges or else the changes may not take place. 
+	<span class="path">C:\WINDOWS\system32\drivers\etc</span>. Also, if you're running Windows 
+	Vista, 7, or 9, be sure to open the hosts file with administrative privileges or else the 
+	changes may not take place. 
 </p>
 <p>
-	For Macs and Linux, the hosts file can typicaly be found at /etc/hosts but the command to 
-	make changes to the file would be the following: sudo nano /etc/hosts.
+	For Macs and Linux, the hosts file can typicaly be found at <span class="path">/etc/hosts</span> 
+	but the command to make changes to the file would be the following: sudo nano <span class="path">/etc/hosts</span>.
 </p>
 <h2 id="framework-workflow">&#43; Framework Workflow</h2>
 <p>
@@ -58,31 +58,32 @@
 <h2 id="application-name">&#43; Application Name</h2>
 <p>
 	The name of the application can easily be changed by opening the framework main configuration 
-	file located at /app/conf/config.php and updating the APP_NAME setting to something more 
-	meaningful. Save the configuration file and all changes will be made throughout your application.
+	file located at <span class="path">/app/conf/config.php</span> and updating the APP_NAME setting 
+	to something more meaningful. Save the configuration file and all changes will be made throughout 
+	your application.
 </p>
 <h2 id="default-controller">&#43; Default Controller</h2>
 <p>
-	By default, a controller with a file name of index.php within /app/controllers/ will be loaded 
-	and act as the index for the application. This default can be changed by opening the framework 
-	main configuration file located at /app/conf/config.php and updating the DEFAULT_CONTROLLER 
+	By default, a controller with a file name of index.php within <span class="path">/app/controllers/</span> 
+	will be loaded and act as the index for the application. This default can be changed by opening the framework 
+	main configuration file located at <span class="path">/app/conf/config.php</span> and updating the <span class="constant">DEFAULT_CONTROLLER</span> 
 	setting to anything you would like. Be sure to rename the actual default file as well.
 </p>
 <h2 id="default-view">&#43; Default View</h2>
 <p>
-	By default, a view with a file name of index.php within the /app/views/&lt;controller&gt;/ 
+	By default, a view with a file name of index.php within the <span class="path">/app/views/&lt;controller&gt;/</span> 
 	directory will be loaded once a controller is requested. This default can be changed by opening 
-	the framework main configuration file located at /app/conf/config.php and updating the 
-	DEFAULT_VIEW setting to anything you would like. Be sure to rename all default view files 
+	the framework main configuration file located at <span class="path">/app/conf/config.php</span> and 
+	updating the <span class="constant">DEFAULT_VIEW</span> setting to anything you would like. Be sure to rename all default view files 
 	as well.
 </p>
 <h2 id="default-layout">&#43; Default Layout</h2>
 <p>
-	By default, a layout with a file name of main.php within the /app/views/layouts/ directory 
-	will be used to display all view templates. This default can be changed by opening the 
-	framework main configuration file located at /app/conf/config.php and updating the LAYOUT 
-	setting to anything you would like. Be sure to rename the default layout file of create a new 
-	layout file and save it to the /app/views/layouts/ directory.
+	By default, a layout with a file name of main.php within the <span class="path">/app/views/layouts/</span> 
+	directory will be used to display all view templates. This default can be changed by opening the 
+	framework main configuration file located at <span class="path">/app/conf/config.php</span> and updating 
+	the <span class="constant">LAYOUT</span> setting to anything you would like. Be sure to rename the default layout file of create a new 
+	layout file and save it to the <span class="path">/app/views/layouts/</span> directory.
 </p>
 <h2 id="crud-sample">&#43; CRUD Sample</h2>
 <p>
@@ -93,4 +94,3 @@
 	such as a controller, model, views, defining a datasource, database interactions, framework 
 	class helpers and is almost completely done without the need to write any HTML.
 </p>
-<?php require '../templates/footer.php' ?>

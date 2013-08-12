@@ -1,4 +1,3 @@
-<?php require '../templates/header.php' ?>
 <h1>Reference Classes</h1>
 <p>
 	The following information below is a list of available functions that are built into the 
@@ -15,7 +14,7 @@
 	<a href="#String">String</a>, 
 	<a href="#View">View</a>
 </p>
-<h2 id="datasource">Database Class Functions</h2>
+<h2 id="datasource">&#43; Database Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -61,7 +60,7 @@
 	</tr>
 </table>
 
-<h2 id="debugging">Debugging Class Functions</h2>
+<h2 id="debugging">&#43; Debugging Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -93,7 +92,7 @@
 		</td>
 	</tr>
 </table>
-<h2 id="form">Form Class Functions</h2>
+<h2 id="form">&#43; Form Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -126,7 +125,7 @@
 		</td>
 	</tr>
 </table>
-<h2 id="html">HTML Class Functions</h2>
+<h2 id="html">&#43; HTML Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -535,7 +534,7 @@
 		</td>
 	</tr>
 </table>
-<h2 id="logging">Logging Class Functions</h2>
+<h2 id="logging">&#43; Logging Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -567,7 +566,7 @@
 		</td>
 	</tr>
 </table>
-<h2 id="request">Request Class Functions</h2>
+<h2 id="request">&#43; Request Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -683,7 +682,7 @@
 	</tr>
 </table>
 
-<h2 id="string">String Class Functions</h2>
+<h2 id="string">&#43; String Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -729,7 +728,7 @@
 	</tr>
 </table>
 
-<h2 id="Security">Security Core Functions</h2>
+<h2 id="Security">&#43; Security Core Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -887,7 +886,7 @@
 		</td>
 	</tr>
 </table>
-<h2 id="view">View Class Functions</h2>
+<h2 id="view">&#43; View Class Functions</h2>
 <table width="98%" cellpadding="0" cellspacing="2" border="0">
 	<tr>
 		<th width="150">
@@ -920,4 +919,3 @@
 		</td>
 	</tr>
 </table>
-<?php require '../templates/footer.php' ?>

@@ -184,7 +184,8 @@ class HTML {
 		$border     = isset( $attr[ 'frameborder' ] ) ? $attr[ 'frameborder' ] : '';
 		$fullscreen = isset( $attr[ 'allowfullscreen' ] ) ? $attr[ 'allowfullscreen' ] : '';
 		$id         = isset( $attr[ 'id' ] ) ? $attr[ 'id' ] : '';
-		$iframe     = '<iframe width="' . $width . '" height="' . $height . '" src="' . $src . '" frameborder="' . $border . '" allowfullscreen="' . $fullscreen . '" id="' . $id . '"></iframe>' . "\n";
+		$trans      = isset( $attr[ 'allowtransparency' ] ) ? ' allowtransparency="true"' : '';
+		$iframe     = '<iframe width="' . $width . '" height="' . $height . '" src="' . $src . '" frameborder="' . $border . '" allowfullscreen="' . $fullscreen . '" id="' . $id . '"' . $trans . '></iframe>' . "\n";
 		return $iframe;
 	}
 

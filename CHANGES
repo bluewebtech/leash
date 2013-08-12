@@ -1,5 +1,14 @@
 - CHANGE LOG -
 
+2013-08-12 - Added by Peter Morrison
+	- Continuation of framework documentation development. 
+	- Added simple documentation search. 
+	- Added navigation to documentation section. 
+	- Corrected minor bug with documentation links. 
+	- Removal of the System::list_all() method and all HTML formatting within the 
+		System class.
+	- Added sample layout tags.
+
 2013-08-09 - Added by Peter Morrison
 	- Continuation of framework documentation development. 
 	- Completely refactored the layouts for both the main application body and the 

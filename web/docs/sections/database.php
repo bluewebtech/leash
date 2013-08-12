@@ -1,13 +1,12 @@
-<?php require '../templates/header.php' ?>
 <h1>Database</h1>
 <p>
 	The database section will explain how flexible the framework is when it comes to handling 
 	database interactions as well as containing a few examples.
 </p>
-<h2 id="datasource-configuration">Datasource Configuration</h2>
+<h2 id="datasource-configuration">&#43; Datasource Configuration</h2>
 <p>
 	All datasource configuration is stored within the datasource.php configuration file located 
-	at /app/conf/datasource.php. There are a few database servers that are supported by the 
+	at <span class="path">/app/conf/datasource.php</span>. There are a few database servers that are supported by the 
 	framework. A list of supported servers are available within the datasource reference section. 
 	It is possible to configure multiple datasources, all being the same server type or completely 
 	different server types. They will all load as long as they are supported. 
@@ -63,11 +62,11 @@ $datasource = array(
 );
 </code>
 </pre>
-<h2 id="initializing-a-datasource">Initializing a Datasource</h2>
+<h2 id="initializing-a-datasource">&#43; Initializing a Datasource</h2>
 <p>
 	Initializing a datasource is incredibly easy. To do so you would define a variable to be 
-	used to store the datasource and utilize the Database::dsn() method by specifying the 
-	name of the datasource from the datasource.php configuration. Below is an example.
+	used to store the datasource and utilize the <span class="method">Database::dsn()</span> method by specifying the 
+	name of the datasource from the <span class="file">datasource.php</span> configuration. Below is an example.
 </p>
 <pre>
 <code>
@@ -105,11 +104,11 @@ $dsn = Database::datasource( 'dsn1' );
 </code>
 </pre>
 
-<h2 id="querying-a-database">Querying a Database</h2>
+<h2 id="querying-a-database">&#43; Querying a Database</h2>
 <p>
 	Doing basic queries is basically no different than the usual of writing SQL statements. 
 	You would first initialize a datasource, use the initializer variable to perform a query 
-	by using the Database::query() class method. Below is an example of how one would query a 
+	by using the <span class="method">Database::query()</span> class method. Below is an example of how one would query a 
 	database and output the data.
 </p>
 <pre>
@@ -149,7 +148,7 @@ $query = Database::query( 'SELECT * FROM stuff WHERE id = :id', array( ':id' => 
 echo $query[ 0 ]->stuff . "&lt;br /&gt;\n";
 </code>
 </pre>
-<h2 id="query-helpers">Query Helpers</h2>
+<h2 id="query-helpers">&#43; Query Helpers</h2>
 <p>
 	There are a few methods within the Database class that can help significantly. A complete 
 	list of these helpers are available within the class reference. Below is an example of a 
@@ -179,15 +178,14 @@ $query = DB::equal( 'dsn1', 'stuff', 'id', 5 );
 echo $query[ 0 ]->stuff . "&lt;br /&gt;\n";
 </code>
 </pre>
-<h2 id="orm">ORM</h2>
+<h2 id="orm">&#43; ORM</h2>
 <p>
 	The framework has an ORM class that consists of a library of methods to make database 
 	interactions even easier than using the Database class helpers. 
 </p>
 <p>
 	To use the ORM class, you must first create a new model class which will be stored within 
-	the models directory located at /app/models/. For example purposes, we will refer to the 
+	the models directory located at <span class="path">/app/models/</span>. For example purposes, we will refer to the 
 	model class as the stuff.php model.
 </p>
 <br />
-<?php require '../templates/footer.php' ?>
