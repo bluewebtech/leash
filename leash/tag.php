@@ -153,12 +153,12 @@ class Tags {
      * return string
      * 
      * @param string file
-     * @param array model
+     * @param array params
     */
-    public function template( $file, $model = array() ) {
-        if( !empty( $model ) ) {
+    public function template( $file, $params = array() ) {
+        if( !empty( $params ) ) {
 
-            foreach ( $model as $key => $value ) {
+            foreach ( $params as $key => $value ) {
                 $$key = $value;
             }
 

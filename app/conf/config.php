@@ -20,7 +20,7 @@ $config = array(
 	'DEBUGGING'          => 0, 
 
 	// -- PHPUnit path
-	'PHPUNIT'            => '', 
+	'PHPUNIT'            => 'C:\Apache\htdocs\leash.framework\leash-framework\vendor\bin\phpunit', 
 	
 	// -- Logging settings
 	'LOGGING'            => 0, 

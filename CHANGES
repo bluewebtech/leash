@@ -1,5 +1,11 @@
 - CHANGE LOG -
 
+2013-08-13 - Added by Peter Morrison
+	- Removed datasource global variable. 
+	- Updated the View class to allow string values, added error handling and updated 
+		the View::render() method alias View::get(). 
+	- Updated the Unit class by creating a output template for all available tests. 
+
 2013-08-12 - Added by Peter Morrison
 	- Continuation of framework documentation development. 
 	- Added simple documentation search. 

@@ -41,6 +41,8 @@ class Database {
         'LIKE' 
     );
 
+    public static $file = 'datasource';
+
     public static $query;
 
     private static $sort_types = array( 
@@ -261,7 +263,7 @@ class Database {
      * @param string dsn
     */
 	public static function dsn( $dsn ) {
-		$datasource   = $GLOBALS[ 'datasource' ];
+        require CONF_PATH . Database::$file . SYSTEM_EXT;
         $environments = Database::dsn_keys( $datasource );
         $environment  = Environment::status( $environments );
         

@@ -51,12 +51,16 @@ class Loader {
 							$method = ob_get_contents();
 							ob_get_clean();
 
-							// -- Check if the View::render() as used
-							if( isset( $_REQUEST[ 'view' ] ) ) {
+							// -- Check if the View::render() was used
+							if( isset( $GLOBALS[ '__view__' ] ) ) {
 								return $method;
 							} else {
-								// -- Display the default controller action template if the core viex() was not used
-								return Controller::action_file_get();
+
+								if( Controller::action_file_exists() ) {
+									return Controller::action_file_get();
+								} else {
+									return $method;
+								}
 							}
 
 						} else {
@@ -79,10 +83,10 @@ class Loader {
 									ob_get_clean();
 
 									// -- Check if the View::render() as used
-									if( isset( $_REQUEST[ 'view' ] ) ) {
+									if( isset( $_REQUEST[ '__view__' ] ) ) {
 										return $method;
 									} else {
-										// -- Display the default controller action template if the core viex() was not used
+										// -- Display the default controller action template if the Viex::render() was not used
 										return Controller::action_file_get( $annotations_method );
 									}
 

@@ -149,7 +149,7 @@ class System {
 
 		foreach ( $dir as $key => $value ) {
 
-			if( $value != '.' && $value != '..' && strpos( $value, '.' ) != 0 ) {
+			if( $value != '.' && $value != CD && strpos( $value, '.' ) != 0 ) {
 				array_push( $files, $value );
 			}
 

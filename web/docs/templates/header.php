@@ -106,6 +106,9 @@
 							<a href="/docs/views#overriding-views">&#43; Overriding Views</a>
 						</li>
 						<li>
+							<a href="/docs/views#multiple-views">&#43; Multiple Views</a>
+						</li>
+						<li>
 							<a href="/docs/views#values-to-views">&#43; Values to Views</a>
 						</li>
 					</ul>
