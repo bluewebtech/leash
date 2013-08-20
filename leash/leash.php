@@ -91,9 +91,6 @@ Globals::all();
 // -- Core plugins loader function
 Plugins::get();
 
-// -- STILL IN TESTING AND NOT IN USE
-//Routes::routes( $routes );
-
 // -- Handle the session timeout
 Session::sessions();
 

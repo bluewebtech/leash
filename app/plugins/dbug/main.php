@@ -2,7 +2,7 @@
 
 require_once 'dBug.php';
 
-class dBug {
+class Dbug {
 
 	public static function get( $var ) { 
 		new __dBug( $var );

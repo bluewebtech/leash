@@ -8,7 +8,7 @@
 			<?php 
 			foreach( System::list_controllers() as $key => $value ) {
 				echo "<li>\n";
-					echo HTML::nl( HTML::ahref( $value, $key ) );
+					echo HTML::nl( HTML::ahref( $value, '/' . $key . '/' ) );
 				echo "</li>\n";
 			}
 			?>

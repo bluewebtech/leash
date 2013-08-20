@@ -5,9 +5,9 @@ class XML {
 	/**
      * Takes an XML file and converts the contents from a simplexml object to an array
      * 
-     * return boolean
+     * return array
      * 
-     * @param string dsn
+     * @param string xml
     */
 	public static function file( $xml ) {
 		try {
@@ -26,9 +26,9 @@ class XML {
 	/**
      * Takes an XML file or string and converts the contents from a simplexml object to an array
      * 
-     * return boolean
+     * return array
      * 
-     * @param string dsn
+     * @param string xml
     */
 	public static function get( $xml ) {
 		try {
@@ -49,9 +49,9 @@ class XML {
 	/**
      * Takes an XML string and converts the contents from a simplexml object to an array
      * 
-     * return boolean
+     * return array
      * 
-     * @param string dsn
+     * @param string xml
     */
 	public static function string( $xml ) {
 		try {

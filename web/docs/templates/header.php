@@ -165,6 +165,53 @@
 						</li>
 					</ul>
 					<h2>
+						<a href="/docs/forms">Forms</a>
+					</h2>
+					<ul>
+						<li>
+							<a href="/docs/forms#buttons">&#43; Buttons</a>
+						</li>
+						<li>
+							<a href="/docs/forms#checkboxes">&#43; Checkboxes</a>
+						</li>
+						<li>
+							<a href="/docs/forms#file-fields">&#43; File Fields</a>
+						</li>
+						<li>
+							<a href="/docs/forms#form-tags">&#43; Form Tags</a>
+						</li>
+						<li>
+							<a href="/docs/forms#hidden-fields">&#43; Hidden Fields</a>
+						</li>
+						<li>
+							<a href="/docs/forms#password-fields">&#43; Password Fields</a>
+						</li>
+						<li>
+							<a href="/docs/forms#radio-buttons">&#43; Radio Buttons</a>
+						</li>
+						<li>
+							<a href="/docs/forms#select-lists">&#43; Select Lists</a>
+						</li>
+						<li>
+							<a href="/docs/forms#submit-buttons">&#43; Submit Buttons</a>
+						</li>
+						<li>
+							<a href="/docs/forms#text-fields">&#43; Text Fields</a>
+						</li>
+						<li>
+							<a href="/docs/forms#textarea-fields">&#43; Textarea Fields</a>
+						</li>
+						<li>
+							<a href="/docs/forms#complete-form">&#43; Complete Form</a>
+						</li>
+					</ul>
+					<h2>
+						<a href="/docs/routes">Routes</a>
+					</h2>
+					<h2>
+						<a href="/docs/string">String</a>
+					</h2>
+					<h2>
 						<a href="/docs/tags">Tags</a>
 					</h2>
 					<ul>

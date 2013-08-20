@@ -17,6 +17,10 @@ switch( $url[ 2 ] ) {
 		require 'sections/file.php';
 	break;
 
+	case 'forms':
+		require 'sections/forms.php';
+	break;
+
 	case 'getting-started':
 		require 'sections/getting-started.php';
 	break;
@@ -35,6 +39,10 @@ switch( $url[ 2 ] ) {
 
 	case 'reference-configuration':
 		require 'sections/reference-configuration.php';
+	break;
+
+	case 'routes':
+		require 'sections/routes.php';
 	break;
 
 	case 'search':

@@ -1,6 +1,6 @@
 <?php
 
-class Strings {
+class String {
 
 	/**
      * Removes all characters from the provided string telephone param

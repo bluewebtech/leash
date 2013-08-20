@@ -17,7 +17,11 @@ class Url {
 	 * return array
 	*/
 	public static function url_array() {
-		return explode( '/', Url::uri() );
+		if( Routes::route() ) {
+			return explode( '/', '/' . Routes::route() . '/' );
+		} else {
+			return explode( '/', Url::uri() );
+		}
 	}
 
 	/**

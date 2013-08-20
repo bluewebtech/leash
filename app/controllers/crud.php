@@ -15,7 +15,7 @@ class CRUDController {
 
 	public function __construct() {
 		$title  = 'Bands CRUD Example';
-		$action = Strings::uppercase_first( $GLOBALS[ 'action' ] );
+		$action = String::uppercase_first( $GLOBALS[ 'action' ] );
 		CRUDController::$title = isset( $action ) && $action != 'Index' ? $title . ' : ' . $action : $title;
 		
 		HTML::title( CRUDController::$title );

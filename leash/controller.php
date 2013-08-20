@@ -68,7 +68,7 @@ class Controller {
 
 		try {
 
-			if ( class_exists( $class ) ) {
+			if( class_exists( $class ) ) {
 				return true;
 			} else {
 				throw new Exception( 'Controller class name (' . $class . ') does not exist.' );
