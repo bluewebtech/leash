@@ -1,7 +1,5 @@
 <?php
 
-namespace CLI;
-
 class Format {
 
 	public static function error_style( $message ) {

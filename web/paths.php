@@ -1,7 +1,7 @@
 <?php 
 
 // -- Current version of the framework
-define( 'VERSION', 'vs-2.7' );
+define( 'VERSION', 'vs-2.8' );
 
 // -- Directory separator for cross-platform compatibility
 define( 'DS', DIRECTORY_SEPARATOR );

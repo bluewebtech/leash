@@ -28,12 +28,11 @@ class Controller {
 	 *
 	 * return string
 	*/
-	public static function controller_filename() {
-		$url        = Url::url_array();
+	public static function controller_filename( $url = null ) {
 		$controller = Controller::controller_clean( $url[ 1 ] );
 
 		// -- Check if controller url exists
-		if( Url::url_controller_isset() ) {
+		if( Url::url_controller_isset() && $controller != DEFAULT_CONTROLLER ) {
 			return strtolower( $controller );
 		} else {
 			return Controller::controller_default();
@@ -46,13 +45,12 @@ class Controller {
 	 *
 	 * return string
 	*/
-	public static function controller_classname() {
-		$url        = Url::url_array();
-		$controller = ucwords( Controller::controller_clean( $url[ 1 ] ) );
+	public static function controller_classname( $controller = null ) {
+		//$controller = ucwords( Controller::controller_clean( $controller ) );
 
 		// -- Determine whether to use the default controller
-		if( Url::url_controller_isset() ) {
-			return str_replace( ' ', '', $controller ) . Controller::$outfix;
+		if( Url::url_controller_isset() && $controller != DEFAULT_CONTROLLER ) {
+			return str_replace( ' ', '', ucwords( Controller::controller_clean( $controller ) ) ) . Controller::$outfix;
 		} else {
 			return ucwords( Controller::controller_default() ) . Controller::$outfix;
 		}
@@ -63,12 +61,10 @@ class Controller {
 	 *
 	 * return boolean
 	*/
-	public static function class_isset() {
-		$class = Controller::controller_classname();
-
+	public static function class_isset( $controller = null ) {
 		try {
 
-			if( class_exists( $class ) ) {
+			if( class_exists( Controller::controller_classname( $controller ) ) ) {
 				return true;
 			} else {
 				throw new Exception( 'Controller class name (' . $class . ') does not exist.' );
@@ -96,8 +92,8 @@ class Controller {
 	 *
 	 * return string
 	*/
-	public static function controller_path() {
-		return APP_ROOT . CONTROLLERS_PATH . Controller::controller_filename() . EXT_PHP;
+	public static function controller_path( $controller = null ) {
+		return APP_ROOT . CONTROLLERS_PATH . $controller . EXT_PHP;
 	}
 
 	/** 
@@ -105,8 +101,8 @@ class Controller {
 	 *
 	 * return boolean
 	*/
-	public static function controller_exists() {
-		return file_exists( Controller::controller_path() );
+	public static function controller_exists( $controller = null ) {
+		return file_exists( Controller::controller_path( $controller ) );
 	}
 
 	/** 
@@ -114,15 +110,15 @@ class Controller {
 	 *
 	 * return string
 	*/
-	public static function controller_file_get() {
-		$class = Controller::controller_classname();
-		$path  = Controller::controller_path();
+	public static function controller_file_get( $controller = null ) {
+		$class = Controller::controller_classname( $controller );
+		$path  = Controller::controller_path( $controller );
 
 		try {
 
 			// -- Check if the controller file exists
-			if( Controller::controller_exists() ) {
-				return require Controller::controller_path();
+			if( Controller::controller_exists( $controller ) ) {
+				return require $path;
 			} else {
 				throw new Exception( 'The path (' . $path . ') to controller (' . $class . ') is invalid of does not exist.' );
 				return false;
@@ -156,11 +152,9 @@ class Controller {
 	 * 
 	 * return string
 	*/
-	public static function action_name() {
-		$url = Url::url_array();
-
+	public static function action_name( $url = null ) {
 		// -- Determine whether to use the default view
-		if( Url::url_action_isset() ) {
+		if( Url::url_action_isset( $url ) ) {
 			return strtolower( $url[ 2 ] );
 		} else {
 			return DEFAULT_VIEW;
@@ -176,24 +170,6 @@ class Controller {
 	 * return boolean
 	*/
 	public static function action_exists( $class, $action ) {
-		$class = Controller::controller_classname();
-
-		/*
-		try {
-
-			// -- Check if the requested action method exists in the specified controller class
-			if( method_exists( $class, $action ) ) {
-				return true;
-			} else {
-				throw new Exception( 'The action method of (' . $action . ') does not exist in the controller class (' . $class . ').' );
-				return false;
-			}
-
-		} catch( Exception $e ) {
-			Error::message( $e );
-		}
-		*/
-
 		// -- Check if the requested action method exists in the specified controller class
 		if( method_exists( $class, $action ) ) {
 			return true;
@@ -207,7 +183,7 @@ class Controller {
 	 *
 	 * return string
 	*/
-	public static function action_filename() {
+	public static function action_filename( $action = null ) {
 		return Controller::action_name();
 	}
 
@@ -216,11 +192,11 @@ class Controller {
 	 *
 	 * return string
 	*/
-	public static function action_file_path( $action = null ) {
+	public static function action_file_path( $controller = null, $action = null ) {
 		if( !isset( $action ) ) {
-			return VIEWS_PATH . Controller::controller_filename() . DS . Controller::action_filename() . EXT_PHP;
+			return VIEWS_PATH . $controller . DS . Controller::action_filename( $action ) . EXT_PHP;
 		} else {
-			return VIEWS_PATH . Controller::controller_filename() . DS . $action . EXT_PHP;
+			return VIEWS_PATH . $controller . DS . $action . EXT_PHP;
 		}
 	}
 
@@ -229,8 +205,8 @@ class Controller {
 	 *
 	 * return boolean
 	*/
-	public static function action_file_exists( $action = null ) {
-		return file_exists( Controller::action_file_path( $action ) );
+	public static function action_file_exists( $controller = null, $action = null ) {
+		return file_exists( Controller::action_file_path( $controller, $action ) );
 	}
 
 	/** 
@@ -239,13 +215,13 @@ class Controller {
 	 *
 	 * return string
 	*/
-	public static function action_file_get( $action = null ) {
-		if( Controller::action_file_exists( $action ) && !View::view_isset() ) {
+	public static function action_file_get( $controller = null, $action = null ) {
+		if( Controller::action_file_exists( $controller, $action ) && !View::view_isset() ) {
 			
 			ob_start();
 
 			if( !isset( $action ) ) {
-				include Controller::action_file_path();
+				include Controller::action_file_path( $action );
 			} else {
 				include Controller::action_file_path( $action );
 			}

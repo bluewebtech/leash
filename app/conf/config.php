@@ -31,7 +31,7 @@ $config = array(
 
 	// -- Datasource
 	'DB_FETCH_TYPE'      => 'class', 
-	'DB_POOLING'         => false, 
+	'DB_POOLING'         => 0, 
 	'DB_CONNECTOR_TYPES' => 'mariadb, mongodb, mysql, postgresql, sqlsrv, sqlite', 
 
 	// -- Session settings

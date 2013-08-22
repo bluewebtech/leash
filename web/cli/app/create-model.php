@@ -1,10 +1,8 @@
 <?php
 
-namespace CLI;
-
-use CLI\Format;
-
 class CreateModel {
+
+	public static $outfix = 'Model';
 
 	/**
      * Checks whether the model name param was provided
@@ -53,7 +51,7 @@ class CreateModel {
      * @param string name
     */
 	public static function model_class_name( $name ) {
-		return ucfirst( $name ) . 'Model';
+		return ucfirst( $name ) . CreateModel::$outfix;
 	}
 
 	/**
@@ -62,8 +60,8 @@ class CreateModel {
      * return string
     */
 	public static function model_default_directory() {
-		$model_path = str_replace( '../app/', '', MODELS_PATH );
-		$path = str_replace( DS . 'web' . DS . 'cli' . DS . 'app', DS . 'app' . DS, __DIR__ );
+		$model_path = str_replace( CD . DS . APP . DS, '', MODELS_PATH );
+		$path = str_replace( DS . WEB . DS . CLI . DS . APP, DS . APP . DS, __DIR__ );
 		return str_replace( '/', DS, $path ) . str_replace( '/', DS, $model_path );
 	}
 
@@ -122,7 +120,7 @@ MODEL;
 		return fclose( $f );
 	}
 
-	public static function create_model( $command ) {
+	public static function main( $command ) {
 		// -- Check if a model name was provided
 		if( CreateModel::model_name_isset( $command ) ) {
 

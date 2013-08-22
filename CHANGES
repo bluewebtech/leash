@@ -1,5 +1,12 @@
 - CHANGE LOG -
 
+2013-08-22 - Added by Peter Morrison
+	- Continuation of routing class feature addition and improvements. 
+	- Refactoring of the url, controller, view and loader classes to meet with 
+		routing class requirements and feature improvements. 
+	- Began refactoring the browser based CLI in terms of UI and feature improvements. 
+	- Updated CRUD sample controller and model.
+
 2013-08-20 - Added by Peter Morrison
 	- Added a very simple custom routing class.
 

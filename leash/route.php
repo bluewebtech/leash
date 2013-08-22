@@ -54,7 +54,7 @@ class Routes {
 		$uri = '';
 
 		foreach( $routes as $key => $value ) {
-
+			
 			// -- Check if default controller
 			if( $key == '(:default)' && empty( $url ) ) {
 				$uri = $value;
@@ -104,11 +104,55 @@ class Routes {
 
 				break;
 
-			} elseif( method_exists( $value, $url ) ) {
-				$uri = DEFAULT_CONTROLLER . '/' . $url;
-				break;	
 			}
 
+		}
+
+		return $uri;
+	}
+
+	/**
+     * Returns an array containing parameters that can be used to load an action from the 
+     * default controller.
+     * 
+     * return array
+    */
+	public static function root() {
+		require CONF_PATH . Routes::$routes . SYSTEM_EXT;
+
+		$url = implode( '/', Routes::url( Routes::url_filter() ) );
+		$url_array = Routes::url_filter();
+		$uri = '';
+
+		if( array_key_exists( '(:default)', $routes ) && array_key_exists( 2, $url_array ) ) {
+
+			$url = explode( '/', $url );
+
+			// --  Loop through and collect all url params
+			if( count( $url ) == 2 ) {
+				$params = $url[ 1 ];
+			} else {
+
+				$params = array();
+
+				for( $a = 1; $a < count( $url ); $a++ ) {
+					$params[] = $url[ $a ];
+				}
+
+			}
+
+			$GLOBALS[ 'params' ] = $params;
+
+			$uri = '/' . $routes[ '(:default)' ] . '/' . implode( '/', $url ) . '/';
+			$uri = explode( '/', $uri );
+
+		} elseif( array_key_exists( '(:default)', $routes ) && array_key_exists( 1, $url_array ) ) {
+
+			$uri = '/' . $routes[ '(:default)' ] . '/' . $url . '/';
+			$uri = explode( '/', $uri );
+
+		} else {
+			$uri = false;
 		}
 
 		return $uri;

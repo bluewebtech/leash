@@ -1,10 +1,5 @@
 <?php
 
-namespace CLI;
-
-use CLI\CreateController;
-use CLI\Format;
-
 class CreateView {
 
 	/**
@@ -64,7 +59,7 @@ class CreateView {
      * 
      * @param string command
     */
-	public static function create_view( $command ) {
+	public static function main( $command ) {
 		// -- Check if a controller name was provided
 		if( CreateController::controller_name_isset( $command ) ) {
 
@@ -110,7 +105,9 @@ class CreateView {
 					if( $view_file_exists ) {
 						print Format::error_style( 'View ' . $view_name . ' already exists.' ) . "\n";
 					} else {
+
 						// -- Generate the new view file
+						CreateController::view_directory_make( $view_file_directory );
 						CreateController::view_make( $view_file_path, $view_file_contents );
 						
 						print 'View ' . Format::command_style( $view_name ) . ' was created successfully for controller ' . Format::command_style( $controller_name ) . "\n";

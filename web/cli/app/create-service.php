@@ -1,10 +1,8 @@
 <?php
 
-namespace CLI;
-
-use CLI\Format;
-
 class CreateService {
+
+	public static $outfix = 'Service';
 
 	/**
      * Checks whether the service name param was provided
@@ -53,7 +51,7 @@ class CreateService {
      * @param string name
     */
 	public static function service_class_name( $name ) {
-		return ucfirst( $name ) . 'Service';
+		return ucfirst( $name ) . CreateService::$outfix;
 	}
 
 	/**
@@ -62,8 +60,8 @@ class CreateService {
      * return string
     */
 	public static function service_default_directory() {
-		$service_path = str_replace( '../app/', '', SERVICES_PATH );
-		$path = str_replace( DS . 'web' . DS . 'cli' . DS . 'app', DS . 'app' . DS, __DIR__ );
+		$service_path = str_replace( CD . DS . APP . DS, '', SERVICES_PATH );
+		$path = str_replace( DS . WEB . DS . CLI . DS . APP, DS . APP . DS, __DIR__ );
 		return str_replace( '/', DS, $path ) . str_replace( '/', DS, $service_path );
 	}
 
@@ -122,7 +120,7 @@ SERVICE;
 		return fclose( $f );
 	}
 
-	public static function create_service( $command ) {
+	public static function main( $command ) {
 		// -- Check if a service name was provided
 		if( CreateService::service_name_isset( $command ) ) {
 

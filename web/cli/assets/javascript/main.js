@@ -1,9 +1,10 @@
-$('#terminal').height(
-	$(document).height()
-);
+$(window).resize(function() {
+	$('#content').height($(window).height() - $('#content').offset().top - 15);
+});
+$(window).resize();
 
-$('#terminal').terminal('cli.php', 
-	{custom_prompt : "leash &#35; ", hello_message : 'Leash CLI : Type \'help\' or \'?\' for help.'}
+$('#content').terminal('cli.php', 
+	{custom_prompt : "&#35; ", hello_message : 'CLI : Type \'help\' or \'?\' for help.'}
 );
 
 $( '#clear' ).click( function () { 
@@ -55,7 +56,7 @@ $( '#help' ).click( function () {
 	$("#command").focus();
 });
 
-$( '#version_control' ).click( function () { 
-	$("#command").val( 'version-control ' ); 
+$( '#version' ).click( function () { 
+	$("#command").val( 'version ' ); 
 	$("#command").focus();
 });

@@ -37,7 +37,7 @@ class View {
 	 * return string
 	*/
 	public static function view_path( $view ) {
-		return VIEWS_PATH . Controller::controller_filename() . '/' . $view . EXT_PHP;
+		return VIEWS_PATH . Controller::controller_filename( Url::url_array() ) . '/' . $view . EXT_PHP;
 	}
 
 	/**
@@ -105,7 +105,7 @@ class View {
 							if( View::view_exists( View::view_path( $view ) ) ) {
 
 								ob_start();
-								require VIEWS_PATH . Controller::controller_filename() . DS . $view . EXT_PHP;
+								require VIEWS_PATH . Controller::controller_filename( Url::url_array() ) . DS . $view . EXT_PHP;
 								$action = ob_get_contents();
 								ob_get_clean();
 

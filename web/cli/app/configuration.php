@@ -1,31 +1,35 @@
 <?php
 
-namespace CLI;
-
-use CLI\Format;
-
 class Configuration {
 
 	public static function conf_command_items() {
 		return array(
-			'app_name', 
-			'default_controller', 
-			'default_view', 
+			'app-name', 
+			'assets-path', 
+			'csrf-protect', 
+			'csrf-token-name', 
+			'csrf-key', 
+			'db-pooling', 
+			'default-controller', 
+			'default-view', 
+			'encryption-key', 
+			'encryption-type', 
+			'fetch-type', 
+			'help', 
 			'layout', 
-			'mobile_layout', 
+			'mobile-layout', 
+			'mobile-enable', 
 			'debugging', 
 			'logging', 
-			'logs_path', 
-			'logs_access', 
-			'logs_ext', 
-			'fetch_type', 
-			'session_enable', 
-			'session_name', 
-			'session_timeout', 
-			'encryption_type', 
-			'encryption_key', 
-			'assets_path', 
-			'help'
+			'logs-path', 
+			'logs-access', 
+			'logs-error', 
+			'logs-ext', 
+			'session-enable', 
+			'session-name', 
+			'session-timeout', 
+			'xss-protect', 
+			'?' 
 		);
 	}
 
@@ -75,8 +79,8 @@ class Configuration {
 	}
 
 	public static function conf_default_directory() {
-		$conf_path = str_replace( '../app/', '', CONF_PATH );
-		$path = str_replace( DS . 'web' . DS . 'cli' . DS . 'app', DS . 'app' . DS, __DIR__ );
+		$conf_path = str_replace( CD . DS . APP . DS, '', CONF_PATH );
+		$path = str_replace( DS . WEB . DS . CLI . DS . APP, DS . APP . DS, __DIR__ );
 		return str_replace( '/', DS, $path ) . str_replace( '/', DS, $conf_path );
 	}
 
@@ -137,7 +141,7 @@ class Configuration {
 			fwrite( $file, $value ); 
 		}
 
-		print "app_name command executed\n";
+		print "app-name command executed\n";
 	}
 
 	// -- DEFAULT_CONTROLLER
@@ -168,7 +172,7 @@ class Configuration {
 			fwrite( $file, $value ); 
 		}
 
-		print "default_controller command executed\n";
+		print "default-controller command executed\n";
 	}
 
 	// -- DEFAULT_VIEW
@@ -199,7 +203,7 @@ class Configuration {
 			fwrite( $file, $value ); 
 		}
 
-		print "default_view command executed\n";
+		print "default-view command executed\n";
 	}
 
 	// -- LAYOUT
@@ -233,6 +237,42 @@ class Configuration {
 		print "layout command executed\n";
 	}
 
+	// -- MOBILE_ENABLE
+	public static function mobile_enable( $command ) {
+		$conf  = Configuration::conf_file_array();
+		$lines = array();
+		$comm  = $command[ 2 ];		
+
+		if( Configuration::conf_param_is_boolean( $command ) ) {
+
+			// -- Loop through the contents of the configuration file.
+			foreach( $conf as $key => $value ) {
+
+				// -- Check for MOBILE_ENABLE value during the configuration array loop
+				if( substr_count( $value, "'MOBILE_ENABLE'" ) > 0 ) {
+					// -- Update MOBILE_ENABLE line with the provided 3rd param in new array
+					array_push( $lines, "\t'MOBILE_ENABLE'      => " . $comm . ", " . "\n" );
+				} else {
+					// -- Add already existant lines to new array
+					array_push( $lines, $value );
+				}
+
+			}
+
+			// -- Open configuration file
+			$file = Configuration::conf_file_open();
+
+			// -- Loop through new array adding each line to the configuration file
+			foreach( $lines as $key => $value ) {
+				fwrite( $file, $value ); 
+			}					
+
+			print "mobile-enable command executed\n";
+		} else {
+			print "mobile-enable command value must be a boolean: 1/0 or true/false\n";
+		}
+	}
+
 	// -- MOBILE_LAYOUT
 	public static function mobile_layout( $command ) {
 		$conf  = Configuration::conf_file_array();
@@ -261,7 +301,7 @@ class Configuration {
 			fwrite( $file, $value ); 
 		}
 
-		print "mobile_layout command executed\n";
+		print "mobile-layout command executed\n";
 	}
 
 	// -- DEBUGGING
@@ -339,13 +379,13 @@ class Configuration {
 
 	// -- LOGS_PATH
 	public static function logs_path( $command ) {
-		$conf  = Configuration::conf_file_array();
-		$lines = array();
-		$comm  = Format::clean( $command[ 2 ] );
-		$logs_path = str_replace( '../app/', '', LOGS_PATH );
-		$path = str_replace( '\web\cli\app', '\app\\', __DIR__ );
-		$old = str_replace( '/', '\\', $path ) . str_replace( '/', '\\', $logs_path );
-		$new = str_replace( '/', '\\', $path ) . str_replace( '/', '\\', $comm );
+		$conf      = Configuration::conf_file_array();
+		$lines     = array();
+		$comm      = Format::clean( $command[ 2 ] );
+		$logs_path = str_replace( CD . DS . APP . DS, '', LOGS_PATH ) . '\\';
+		$path      = str_replace( DS . WEB . DS . CLI . DS . APP, DS . APP . DS, __DIR__ );
+		$old       = str_replace( '/', '\\', $path ) . str_replace( '/', '\\', $logs_path );
+		$new       = str_replace( '/', '\\', $path ) . str_replace( '/', '\\', $comm );
 
 		// -- Make sure logs directory even exists
 		if( is_dir( $old ) ) {
@@ -375,7 +415,7 @@ class Configuration {
 				fwrite( $file, $value ); 
 			}
 
-			print "logs_path command executed\n";
+			print "logs-path command executed\n";
 
 		} else {
 			print "Cannot update logs path.\n";
@@ -387,8 +427,8 @@ class Configuration {
 		$conf      = Configuration::conf_file_array();
 		$lines     = array();
 		$comm      = Format::clean( $command[ 2 ] );
-		$logs_path = str_replace( '../app/', '', LOGS_PATH ) . '\\';
-		$path      = str_replace( '\web\cli\app', '\app\\', __DIR__ );
+		$logs_path = str_replace( CD . DS . APP . DS, '', LOGS_PATH ) . '\\';
+		$path      = str_replace( DS . WEB . DS . CLI . DS . APP, DS . APP . DS, __DIR__ );
 		$old       = str_replace( '/', '\\', $path ) . str_replace( '/', '\\', $logs_path ) . LOGS_ACCESS . LOGS_EXT;
 		$new       = str_replace( '/', '\\', $path ) . str_replace( '/', '\\', $logs_path ) . $comm . LOGS_EXT;
 
@@ -420,7 +460,52 @@ class Configuration {
 				fwrite( $file, $value ); 
 			}
 
-			print "logs_access command executed\n";
+			print "logs-access command executed\n";
+
+		} else {
+			print "Cannot update access log name.\n";
+		}
+	}
+
+	// -- LOGS_ERROR
+	public static function logs_error( $command ) {
+		$conf      = Configuration::conf_file_array();
+		$lines     = array();
+		$comm      = Format::clean( $command[ 2 ] );
+		$logs_path = str_replace( CD . DS . APP . DS, '', LOGS_PATH ) . '\\';
+		$path      = str_replace( DS . WEB . DS . CLI . DS . APP, DS . APP . DS, __DIR__ );
+		$old       = str_replace( '/', '\\', $path ) . str_replace( '/', '\\', $logs_path ) . LOGS_ERROR . LOGS_EXT;
+		$new       = str_replace( '/', '\\', $path ) . str_replace( '/', '\\', $logs_path ) . $comm . LOGS_EXT;
+
+		// -- Make sure logs directory even exists
+		if( file_exists( $old ) ) {
+
+			// -- Loop through the contents of the configuration file.
+			foreach( $conf as $key => $value ) {
+
+				// -- Check for LOGS_ERROR value during the configuration array loop
+				if( substr_count( $value, "'LOGS_ERROR'" ) > 0 ) {
+					// -- Update LOGS_ERROR line with the provided 3rd param in new array
+					array_push( $lines, "\t'LOGS_ERROR'         => '" . $comm . "', " . "\n" );
+				} else {
+					// -- Add already existant lines to new array
+					array_push( $lines, $value );
+				}
+
+			}
+
+			// -- Rename logs directory
+			rename( $old, $new );
+
+			// -- Open configuration file
+			$file = Configuration::conf_file_open();
+
+			// -- Loop through new array adding each line to the configuration file
+			foreach( $lines as $key => $value ) {
+				fwrite( $file, $value ); 
+			}
+
+			print "logs-access command executed\n";
 
 		} else {
 			print "Cannot update access log name.\n";
@@ -432,8 +517,8 @@ class Configuration {
 		$conf      = Configuration::conf_file_array();
 		$lines     = array();
 		$comm      = Format::clean( $command[ 2 ] );
-		$logs_path = str_replace( '../app/', '', LOGS_PATH ) . '\\';
-		$path      = str_replace( '\web\cli\app', '\app\\', __DIR__ ) . $logs_path;
+		$logs_path = str_replace( CD . DS . APP . DS, '', LOGS_PATH ) . '\\';
+		$path      = str_replace( DS . WEB . DS . CLI . DS . APP, DS . APP . DS, __DIR__ ) . $logs_path;
 		$dir       = scandir( $path );
 		$files     = array();
 
@@ -467,10 +552,10 @@ class Configuration {
 			fwrite( $file, $value ); 
 		}
 
-		print "logs_ext command executed\n";
+		print "logs-ext command executed\n";
 	}
 
-	// -- FETCH_TYPE
+	// -- DB_FETCH_TYPE
 	public static function fetch_type( $command ) {
 		$conf  = Configuration::conf_file_array();
 		$lines = array();
@@ -483,10 +568,10 @@ class Configuration {
 			// -- Loop through the contents of the configuration file.
 			foreach( $conf as $key => $value ) {
 
-				// -- Check for FETCH_TYPE value during the configuration array loop
-				if( substr_count( $value, "'FETCH_TYPE'" ) > 0 ) {
-					// -- Update FETCH_TYPE line with the provided 3rd param in new array
-					array_push( $lines, "\t'FETCH_TYPE'         => '" . $comm . "', " . "\n" );
+				// -- Check for DB_FETCH_TYPE value during the configuration array loop
+				if( substr_count( $value, "'DB_FETCH_TYPE'" ) > 0 ) {
+					// -- Update DB_FETCH_TYPE line with the provided 3rd param in new array
+					array_push( $lines, "\t'DB_FETCH_TYPE'      => '" . $comm . "', " . "\n" );
 				} else {
 					// -- Add already existant lines to new array
 					array_push( $lines, $value );
@@ -502,10 +587,46 @@ class Configuration {
 				fwrite( $file, $value ); 
 			}
 
-			print "fetch_type command executed\n";
+			print "fetch-type command executed\n";
 
 		} else {
 			print "The provided fetch type is not a valid value.\n";
+		}
+	}
+
+	// -- DB_POOLING
+	public static function db_pooling( $command ) {
+		$conf  = Configuration::conf_file_array();
+		$lines = array();
+		$comm  = $command[ 2 ];		
+
+		if( Configuration::conf_param_is_boolean( $command ) ) {
+
+			// -- Loop through the contents of the configuration file.
+			foreach( $conf as $key => $value ) {
+
+				// -- Check for DB_POOLING value during the configuration array loop
+				if( substr_count( $value, "'DB_POOLING'" ) > 0 ) {
+					// -- Update DB_POOLING line with the provided 3rd param in new array
+					array_push( $lines, "\t'DB_POOLING'         => " . $comm . ", " . "\n" );
+				} else {
+					// -- Add already existant lines to new array
+					array_push( $lines, $value );
+				}
+
+			}
+
+			// -- Open configuration file
+			$file = Configuration::conf_file_open();
+
+			// -- Loop through new array adding each line to the configuration file
+			foreach( $lines as $key => $value ) {
+				fwrite( $file, $value ); 
+			}					
+
+			print "db-pooling command executed\n";
+		} else {
+			print "db-pooling command value must be a boolean: 1/0 or true/false\n";
 		}
 	}
 
@@ -539,10 +660,10 @@ class Configuration {
 				fwrite( $file, $value ); 
 			}
 
-			print "session_enable command executed\n";
+			print "session-enable command executed\n";
 
 		} else {
-			print "session_enable command value must be a boolean: 1/0 or true/false\n";
+			print "session-enable command value must be a boolean: 1/0 or true/false\n";
 		}
 	}
 
@@ -583,7 +704,7 @@ class Configuration {
 			fwrite( $file, $value ); 
 		}
 
-		print "session_name command executed\n";
+		print "session-name command executed\n";
 	}
 
 	// -- SESSION_TIMEOUT
@@ -616,7 +737,7 @@ class Configuration {
 				fwrite( $file, $value ); 
 			}
 
-			print "session_timeout command executed\n";
+			print "session-timeout command executed\n";
 
 		} else {
 			print "The provided value for the session_timeout command must be an integer\n";
@@ -628,7 +749,32 @@ class Configuration {
 		$conf  = Configuration::conf_file_array();
 		$lines = array();
 		$comm  = $command[ 2 ];
-		$types = array( 'MD2', 'MD5', 'SHA1', 'SHA256', 'SHA384', 'SHA512' );
+		$types = array( 
+			'adler32', 
+			'crc32b', 
+			'crc32', 
+			'haval128,3', 
+			'haval160,3', 
+			'haval192,3', 
+			'haval224,3', 
+			'haval256,3', 
+			'haval128,4', 
+			'haval160,4v', 
+			'haval192,4', 
+			'haval224,4', 
+			'haval256,4', 
+			'md4', 
+			'md5', 
+			'sha1', 
+			'sha384', 
+			'sha512', 
+			'tiger128,3', 
+			'tiger160,3', 
+			'tiger192,3', 
+			'tiger128,4', 
+			'tiger160,4', 
+			'tiger192,4' 
+		);
 
 		if( in_array( $command[ 2 ], $types ) ) {
 
@@ -655,7 +801,7 @@ class Configuration {
 				fwrite( $file, $value ); 
 			}
 
-			print "encryption_type command executed\n";
+			print "encryption-type command executed\n";
 
 		} else {
 			print "The provided encryption type is not a valid value.\n";
@@ -690,7 +836,161 @@ class Configuration {
 			fwrite( $file, $value ); 
 		}
 
-		print "encryption_key command executed\n";
+		print "encryption-key command executed\n";
+	}
+
+	// -- XSS_PROTECT
+	public static function xss_protect( $command ) {
+		$conf  = Configuration::conf_file_array();
+		$lines = array();
+		$comm  = $command[ 2 ];		
+
+		if( Configuration::conf_param_is_boolean( $command ) ) {
+			
+			// -- Loop through the contents of the configuration file.
+			foreach( $conf as $key => $value ) {
+
+				// -- Check for XSS_PROTECT value during the configuration array loop
+				if( substr_count( $value, "'XSS_PROTECT'" ) > 0 ) {
+					// -- Update XSS_PROTECT line with the provided 3rd param in new array
+					array_push( $lines, "\t'XSS_PROTECT'        => " . $comm . ", " . "\n" );
+				} else {
+					// -- Add already existant lines to new array
+					array_push( $lines, $value );
+				}
+
+			}
+
+			// -- Open configuration file
+			$file = Configuration::conf_file_open();
+
+			// -- Loop through new array adding each line to the configuration file
+			foreach( $lines as $key => $value ) {
+				fwrite( $file, $value ); 
+			}
+
+			print "xss-protect command executed\n";
+
+		} else {
+			print "xss-protect command value must be a boolean: 1/0 or true/false\n";
+		}
+	}
+
+	// -- CSRF_PROTECT
+	public static function csrf_protect( $command ) {
+		$conf  = Configuration::conf_file_array();
+		$lines = array();
+		$comm  = $command[ 2 ];		
+
+		if( Configuration::conf_param_is_boolean( $command ) ) {
+			
+			// -- Loop through the contents of the configuration file.
+			foreach( $conf as $key => $value ) {
+
+				// -- Check for CSRF_PROTECT value during the configuration array loop
+				if( substr_count( $value, "'CSRF_PROTECT'" ) > 0 ) {
+					// -- Update CSRF_PROTECT line with the provided 3rd param in new array
+					array_push( $lines, "\t'CSRF_PROTECT'       => " . $comm . ", " . "\n" );
+				} else {
+					// -- Add already existant lines to new array
+					array_push( $lines, $value );
+				}
+
+			}
+
+			// -- Open configuration file
+			$file = Configuration::conf_file_open();
+
+			// -- Loop through new array adding each line to the configuration file
+			foreach( $lines as $key => $value ) {
+				fwrite( $file, $value ); 
+			}
+
+			print "csrf-protect command executed\n";
+
+		} else {
+			print "csrf-protect command value must be a boolean: 1/0 or true/false\n";
+		}
+	}
+
+	// -- CSRF_TOKEN_NAME
+	public static function csrf_token_name( $command ) {
+		$conf  = Configuration::conf_file_array();
+		$lines = array();
+		$comm  = array();
+
+		// -- Loop through all elements in the command array starting from the second param on 
+		// -- adding each looped value to a new $comm array
+		for( $i = 2; $i <= count( $command ) - 1; $i++ ) { 
+			$comm[ $i ] = $command[ $i ];
+		}
+
+		// -- Convert the $comm array into a string separating all elements with spaces
+		$comm = implode( ' ', $comm );
+
+		// -- Loop through the contents of the configuration file.
+		foreach( $conf as $key => $value ) {
+
+			// -- Check for CSRF_TOKEN_NAME value during the configuration array loop
+			if( substr_count( $value, "'CSRF_TOKEN_NAME'" ) > 0 ) {
+				// -- Update CSRF_TOKEN_NAME line with the provided 3rd param in new array
+				array_push( $lines, "\t'CSRF_TOKEN_NAME'    => '" . $comm . "', " . "\n" );
+			} else {
+				// -- Add already existant lines to new array
+				array_push( $lines, $value );
+			}
+
+		}
+
+		// -- Open configuration file
+		$file = Configuration::conf_file_open();
+
+		// -- Loop through new array adding each line to the configuration file
+		foreach( $lines as $key => $value ) {
+			fwrite( $file, $value ); 
+		}
+
+		print "csrf-token-name command executed\n";
+	}
+
+	// -- CSRF_KEY
+	public static function csrf_key( $command ) {
+		$conf  = Configuration::conf_file_array();
+		$lines = array();
+		$comm  = array();
+
+		// -- Loop through all elements in the command array starting from the second param on 
+		// -- adding each looped value to a new $comm array
+		for( $i = 2; $i <= count( $command ) - 1; $i++ ) { 
+			$comm[ $i ] = $command[ $i ];
+		}
+
+		// -- Convert the $comm array into a string separating all elements with spaces
+		$comm = implode( ' ', $comm );
+
+		// -- Loop through the contents of the configuration file.
+		foreach( $conf as $key => $value ) {
+
+			// -- Check for CSRF_KEY value during the configuration array loop
+			if( substr_count( $value, "'CSRF_KEY'" ) > 0 ) {
+				// -- Update CSRF_KEY line with the provided 3rd param in new array
+				array_push( $lines, "\t'CSRF_KEY'           => '" . $comm . "', " . "\n" );
+			} else {
+				// -- Add already existant lines to new array
+				array_push( $lines, $value );
+			}
+
+		}
+
+		// -- Open configuration file
+		$file = Configuration::conf_file_open();
+
+		// -- Loop through new array adding each line to the configuration file
+		foreach( $lines as $key => $value ) {
+			fwrite( $file, $value ); 
+		}
+
+		print "csrf-key command executed\n";
 	}
 
 	// -- ASSETS_PATH
@@ -721,36 +1021,43 @@ class Configuration {
 			fwrite( $file, $value ); 
 		}
 
-		print "assets_path command executed\n";
+		print "assets-path command executed\n";
 	}
 
 	public static function help() {
 		$help = <<<HELP
 The following are available actions for the config command:
-<span class="command">app_name</span> ---------------- <span class="examples">app_name [string]</span>
-<span class="command">default_controller</span> ------ <span class="examples">default_controller [string]</span>
-<span class="command">default_view</span> ------------ <span class="examples">default_view [string]</span>
-<span class="command">layout</span> ------------------ <span class="examples">layout [string]</span>
-<span class="command">mobile_layout</span> ----------- <span class="examples">mobile_layout [string]</span>
-<span class="command">debugging</span> --------------- <span class="examples">debugging [boolean]</span>
-<span class="command">logging</span> ----------------- <span class="examples">logging [boolean]</span>
-<span class="command">logs_path</span> --------------- <span class="examples">logs_path  [string]</span>
-<span class="command">logs_access</span> ------------- <span class="examples">logs_access  [string]</span>
-<span class="command">logs_ext</span> ---------------- <span class="examples">logs_ext  [string]</span>
-<span class="command">fetch_type</span> -------------- <span class="examples">fetch_type  [string]</span>
-<span class="command">session_enable</span> ---------- <span class="examples">session_enable [boolean]</span>
-<span class="command">session_name</span> ------------ <span class="examples">session_name [string]</span>
-<span class="command">session_timeout</span> --------- <span class="examples">session_timeout [int]</span>
-<span class="command">encryption_type</span> --------- <span class="examples">encryption_type [string]</span>
-<span class="command">encryption_key</span> ---------- <span class="examples">encryption_key [string]</span>
-<span class="command">assets_path</span> ------------- <span class="examples">assets_path [string]</span>
-<span class="command">help</span> -------------------- <span class="examples">help</span>
+<span class="command">app-name</span> : <span class="examples">app-name [string]</span>
+<span class="command">assets-path</span> : <span class="examples">assets-path [string]</span>
+<span class="command">csrf-protect</span> : <span class="examples">csrf-protect [boolean]</span>
+<span class="command">csrf-token-name</span> : <span class="examples">csrf-token-name [string]</span>
+<span class="command">csrf-key</span> : <span class="examples">csrf-key [string]</span>
+<span class="command">db-pooling</span> : <span class="examples">db-pooling [boolean]</span>
+<span class="command">debugging</span> : <span class="examples">debugging [boolean]</span>
+<span class="command">default-controller</span> : <span class="examples">default-controller [string]</span>
+<span class="command">default-view</span> : <span class="examples">default-view [string]</span>
+<span class="command">encryption-type</span> : <span class="examples">encryption-type [string]</span>
+<span class="command">encryption-key</span> : <span class="examples">encryption-key [string]</span>
+<span class="command">fetch-type</span> : <span class="examples">fetch-type [string (class, array)]</span>
+<span class="command">help or ?</span> : <span class="examples">help or ?</span>
+<span class="command">layout</span> : <span class="examples">layout [string]</span>
+<span class="command">logging</span> : <span class="examples">logging [boolean]</span>
+<span class="command">logs-access</span> : <span class="examples">logs-access [string]</span>
+<span class="command">logs-error</span> : <span class="examples">logs-error [string]</span>
+<span class="command">logs-ext</span> : <span class="examples">logs-ext [string]</span>
+<span class="command">logs-path</span> : <span class="examples">logs-path [string]</span>
+<span class="command">mobile-enable</span> : <span class="examples">mobile-enable [boolean]</span>
+<span class="command">mobile-layout</span> : <span class="examples">mobile-layout [string]</span>
+<span class="command">session-enable</span> : <span class="examples">session-enable [boolean]</span>
+<span class="command">session-name</span> : <span class="examples">session-name [string]</span>
+<span class="command">session-timeout</span> : <span class="examples">session-timeout [int]</span>
+<span class="command">xss-protect</span> : <span class="examples">xss-protect [boolean]</span>
 HELP;
 		print $help . "\n";
 	}
 
 	// -- Main
-	public static function configuration( $command ) {
+	public static function main( $command ) {
 		// -- Check if configuration file exists
 		if( Configuration::conf_file_exists() ) {
 
@@ -768,78 +1075,106 @@ HELP;
 						
 						// -- Config command switch board
 						switch( $conf_command ) {
-							case 'app_name':
+							case 'app-name':
 								Configuration::app_name( $command );
 							break;
 
-							case 'default_controller':
+							case 'assets-path':
+								Configuration::assets_path( $command );
+							break;	
+
+							case 'csrf-protect':
+								Configuration::csrf_protect( $command );
+							break;	
+
+							case 'csrf-token-name':
+								Configuration::csrf_token_name( $command );
+							break;	
+
+							case 'csrf-key':
+								Configuration::csrf_key( $command );
+							break;	
+
+							case 'default-controller':
 								Configuration::default_controller( $command );
 							break;
 
-							case 'default_view':
+							case 'default-view':
 								Configuration::default_view( $command );
-							break;
-
-							case 'layout':
-								Configuration::layout( $command );
-							break;
-
-							case 'mobile_layout':
-								Configuration::mobile_layout( $command );
 							break;
 
 							case 'debugging':
 								Configuration::debugging( $command );
 							break;
 
+							case 'encryption-type':
+								Configuration::encryption_type( $command );
+							break;
+
+							case 'encryption-key':
+								Configuration::encryption_key( $command );
+							break;
+
+							case 'fetch-type':
+								Configuration::fetch_type( $command );
+							break;
+
+							case 'db-pooling':
+								Configuration::db_pooling( $command );
+							break;
+
+							case 'layout':
+								Configuration::layout( $command );
+							break;
+
 							case 'logging':
 								Configuration::logging( $command );
 							break;
 
-							case 'logs_path':
+							case 'logs-path':
 								Configuration::logs_path( $command );
 							break;
 
-							case 'logs_access':
+							case 'logs-access':
 								Configuration::logs_access( $command );
 							break;
 
-							case 'logs_ext':
+							case 'logs-error':
+								Configuration::logs_error( $command );
+							break;
+
+							case 'logs-ext':
 								Configuration::logs_ext( $command );
 							break;
 
-							case 'fetch_type':
-								Configuration::fetch_type( $command );
+							case 'mobile-enable':
+								Configuration::mobile_enable( $command );
 							break;
 
-							case 'session_enable':
+							case 'mobile-layout':
+								Configuration::mobile_layout( $command );
+							break;
+
+							case 'session-enable':
 								Configuration::session_enable( $command );
 							break;
 
-							case 'session_name':
+							case 'session-name':
 								Configuration::session_name( $command );
 							break;
 
-							case 'session_timeout':
+							case 'session-timeout':
 								Configuration::session_timeout( $command );
 							break;
 
-							case 'encryption_type':
-								Configuration::encryption_type( $command );
+							case 'xss-protect':
+								Configuration::xss_protect( $command );
 							break;
-
-							case 'encryption_key':
-								Configuration::encryption_key( $command );
-							break;
-
-							case 'assets_path':
-								Configuration::assets_path( $command );
-							break;			
 						}
 
 					} else {
 
-						if( $conf_command == 'help' ) {
+						if( $conf_command == 'help' || $conf_command == '?' ) {
 							Configuration::help();
 						} else {
 							print "Configuration command " . Format::command_style( $conf_command ) . " needs a second parameter to continue.\n";

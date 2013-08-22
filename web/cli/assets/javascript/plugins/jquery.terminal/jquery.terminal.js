@@ -95,7 +95,7 @@
 					}
 					data += '</span>';
 				}
-				data += '<div style="margin:10px 0;border-top:1px solid #141414;"></div>';
+				data += '<div style="margin:10px;border-top:1px solid #141414;"></div>';
 
 				terminal_output.append('<span>' + data + '</span>');
 
@@ -211,15 +211,14 @@
 					'outline' : 'none',
 				});
 				terminal_container.find('input').css({
-					'color' : 'lightgrey',
+					'color' : 'ffffff',
 					'font-family' : 'monospace',
 					'font-size' : '1em',
 					'line-height' : '1.3em',
-					'color' : '#00B3FF',
 					'border' : 'none',
 				});
 				terminal_container.find('span').css({
-					'color' : 'lightgrey',
+					'color' : 'ffffff',
 					'font-family' : 'monospace',
 					'font-size' : '1em',
 					'line-height' : '1.3em',
@@ -241,7 +240,7 @@
 				}
 
 				if (settings.hello_message)
-					terminal_output.append('<span style="color:#00B3FF;font-weight:bold;">' + settings.hello_message + '<br /></span>');
+					terminal_output.append('<h1>' + settings.hello_message + '</h1>');
 
 				if (settings.submit_on_load)
 					terminal_command(null, true);

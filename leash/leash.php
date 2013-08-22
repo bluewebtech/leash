@@ -160,4 +160,4 @@ if( Application::application_file_exists() ) {
 }
 
 // -- Call the framework core debugging function
-Debugging::debug();
+if( DEBUGGING ) { echo Debugging::debug(); }

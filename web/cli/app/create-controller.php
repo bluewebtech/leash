@@ -1,10 +1,8 @@
 <?php
 
-namespace CLI;
-
-use CLI\Format;
-
 class CreateController {
+
+	public static $outfix = 'Controller';
 
 	/**
      * Checks whether controller name param was provided
@@ -44,7 +42,7 @@ class CreateController {
      * @param string name
     */
 	public static function controller_class_name( $name ) {
-		return ucfirst( $name ) . 'Controller';
+		return ucfirst( $name ) . CreateController::$outfix;
 	}
 
 	/**
@@ -62,7 +60,7 @@ class CreateController {
      * return string
     */
 	public static function controller_directory_path() {
-		$path = str_replace( DS . 'web' . DS . 'cli' . DS . 'app', DS . 'app' . DS, __DIR__ );
+		$path = str_replace( DS . WEB . DS . CLI . DS . APP, DS . APP . DS, __DIR__ );
 		return $path . CreateController::controller_default_directory();
 	}
 
@@ -113,7 +111,7 @@ class CreateController {
 class $class {
 
 	public function index() {
-		view( 'index' );
+		echo HTML::h1( '$class' );
 	}
 
 }
@@ -160,8 +158,8 @@ CONTROLLER;
      * return string
     */
 	public static function view_default_directory() {
-		$view_path = str_replace( '../app/', '', VIEWS_PATH );
-		$path = str_replace( DS . 'web' . DS . 'cli' . DS . 'app', DS . 'app' . DS, __DIR__ );
+		$view_path = str_replace( CD . DS . APP . DS, '', VIEWS_PATH );
+		$path = str_replace( DS . WEB . DS . CLI . DS . APP, DS . APP . DS, __DIR__ );
 		return str_replace( '/', DS, $path ) . str_replace( '/', DS, $view_path );
 	}
 
@@ -259,7 +257,7 @@ VIEW;
      * 
      * @param string command
     */
-	public static function create_controller( $command ) {
+	public static function main( $command ) {
 		if( CreateController::controller_name_isset( $command ) ) {
 
 			// -- Controller variable definitions
@@ -270,16 +268,6 @@ VIEW;
 			$controller_file_path      = CreateController::controller_file_path( $controller_file_ext );
 			$controller_file_contents  = CreateController::controller_file_contents( $controller_class_name );
 
-			// View variable definitions
-			$view_default_file      = CreateController::view_default_file();
-			$view_default_file_ext  = CreateController::view_default_file_ext();
-			$view_default_directory = CreateController::view_default_directory();
-			$view_file_directory    = CreateController::view_file_directory( $controller_name );
-			$view_file_path         = CreateController::view_file_path( $view_file_directory );
-			$view_directory_exists  = CreateController::view_directory_exists( $view_file_directory );
-			$view_file_exists       = CreateController::view_file_exists( $view_file_path );
-			$view_file_contents     = CreateController::view_file_contents( $controller_name );
-
 			// -- Check if controller already exists. If it does let the user know
 			if( CreateController::controller_file_exists( $controller_file_path ) ) {
 				print "Controller " . Format::command_style( $controller_name ) . " already exists.\n";
@@ -288,22 +276,7 @@ VIEW;
 				CreateController::controller_make( $controller_file_path, $controller_file_contents );
 
 				print "Controller " . Format::command_style( $controller_name ) . " created successfully.\n";
-				
-				if( $view_directory_exists ) {
-					print 'View directory for controller ' . Format::command_style( $controller_name ) . " cannot be created because it already exists.\n";
-				} else {
-					CreateController::view_directory_make( $view_file_directory );
-				}
-
-				if( $view_file_exists ) {
-					print 'Default view for controller ' . Format::command_style( $controller_name ) . " cannot be created because it already exists.\n";
-				} else {
-					CreateController::view_make( $view_file_path, $view_file_contents );
-
-					print 'Default view for controller ' . Format::command_style( $controller_name ) . " created successfully.\n";
-					print 'Click <a href="http://' . $_SERVER['SERVER_NAME'] . '/' . $controller_name . '" target="_blank">here</a> to view your new controller.' . "\n";
-				}
-
+				print 'Click <a href="' . '/' . $controller_name . '/" target="_blank">here</a> to view your new controller.' . "\n";
 			}
 
 		} else {

@@ -39,8 +39,8 @@ class Url {
 	 *
 	 * return boolean
 	*/
-	public static function url_controller_isset() {
-		if( array_key_exists( 1, Url::url_filter() ) ) {
+	public static function url_controller_isset( $url = null ) {
+		if( array_key_exists( 1, isset( $url ) ? $url : Url::url_filter() ) ) {
 			return true;
 		} else {
 			return false;
@@ -52,8 +52,8 @@ class Url {
 	 * 
 	 * return boolean
 	*/
-	public static function url_action_isset() {
-		if( array_key_exists( 2, Url::url_filter() ) ) {
+	public static function url_action_isset( $url = null ) {
+		if( array_key_exists( 2, isset( $url ) ? $url : Url::url_filter() ) ) {
 			return true;
 		} else {
 			return false;
@@ -65,8 +65,8 @@ class Url {
 	 * 
 	 * return boolean
 	*/
-	public static function url_params_isset() {
-		if( array_key_exists( 3, Url::url_filter() ) ) {
+	public static function url_params_isset( $url = null ) {
+		if( array_key_exists( 3, isset( $url ) ? $url : Url::url_filter() ) ) {
 			return true;
 		} else {
 			return false;

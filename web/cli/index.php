@@ -1,30 +1,38 @@
-<?php
-
-/*
-if( $_SERVER['SERVER_ADDR'] != '127.0.0.1' ) {
-	header( 'Location: ../' );
-}
-*/
-
-$_SERVER['SERVER_ADDR'] != '127.0.0.1' ? header( 'Location: ../' ) : '';
-
-?>
+<?php $_SERVER['SERVER_ADDR'] != '127.0.0.1' ? header( 'Location: ../' ) : '' ?>
 
 <!DOCTYPE html>
 <html>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="author" content="Peter Rjabanedelia 3rd - Blue Web tech" />
-	<meta name="version" content="v-1.0:Pearl-Jam" />
-	<title>Framework CLI</title>
+	<title>CLI</title>
 	<link rel="stylesheet" type="text/css" href="/cli/assets/css/main/main.css" />
 </head>
 <body>
-	<div id="sidebar">
-		<div id="commands">
+	
+	<div id="header">
+		<div id="navigation">
+	<ul>
+		<li>
+			<a href="/">Home</a>
+		</li>
+		<li>
+			<a href="/docs/">Docs</a>
+		</li>
+		<li>
+			<a href="/cli/">CLI</a>
+		</li>
+	</ul>
+</div>
+<div id="top">TOP</div>
+		<div id="top">TOP</div>
+	</div>
+
+	<div id="container">
+
+		<div id="sidebar">
 			<ul>
 				<li>
 					<h2>
-						<a href="">Commands</a>
+						<a href="/cli/">Commands</a>
 					</h2>
 					<ul>
 						<li>
@@ -57,12 +65,20 @@ $_SERVER['SERVER_ADDR'] != '127.0.0.1' ? header( 'Location: ../' ) : '';
 						<li>
 							<a href="#" id="help">Help</a>
 						</li>
+						<li>
+							<a href="#" id="version">Version</a>
+						</li>
 					</ul>
 				</li>
 			</ul>
 		</div>
+
+		<div id="content_holder">
+			<div id="content"></div>
+		</div>
+		
+		<div class="clear"></div>
 	</div>
-	<div id="terminal"></div>
 
 	<script type="text/javascript" src="/cli/assets/javascript/libraries/jquery/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="/cli/assets/javascript/plugins/jquery.terminal/jquery.terminal.js"></script>

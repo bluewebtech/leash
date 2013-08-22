@@ -37,6 +37,10 @@ switch( $url[ 2 ] ) {
 		require 'sections/reference-classes.php';
 	break;
 
+	case 'reference-cli':
+		require 'sections/reference-cli.php';
+	break;
+
 	case 'reference-configuration':
 		require 'sections/reference-configuration.php';
 	break;

@@ -230,6 +230,9 @@
 							<a href="/docs/reference-classes">&#43; Classes</a>
 						</li>
 						<li>
+							<a href="/docs/reference-cli">&#43; CLI</a>
+						</li>
+						<li>
 							<a href="/docs/reference-configuration">&#43; Configuration</a>
 						</li>
 					</ul>
