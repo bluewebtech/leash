@@ -27,6 +27,9 @@ $contant_names = array(
 	'CSRF_PROTECT', 
 	'CSRF_TOKEN_NAME', 
 	'CSRF_KEY', 
+	'CACHE_ENABLE', 
+	'CACHE_TYPE', 
+	'CACHE_NAME', 
 	'ASSETS_PATH', 
 	'EXT_PHP', 
 	'TIME_ZONE'
@@ -72,6 +75,9 @@ define( 'XSS_PROTECT',        $config[ 'XSS_PROTECT' ] );
 define( 'CSRF_PROTECT',       $config[ 'CSRF_PROTECT' ] );
 define( 'CSRF_TOKEN_NAME',    $config[ 'CSRF_TOKEN_NAME' ] );
 define( 'CSRF_KEY',           $config[ 'CSRF_KEY' ] );
+define( 'CACHE_ENABLE',       $config[ 'CACHE_ENABLE' ] );
+define( 'CACHE_TYPE',         $config[ 'CACHE_TYPE' ] );
+define( 'CACHE_NAME',         $config[ 'CACHE_NAME' ] );
 define( 'ASSETS_PATH',        $config[ 'ASSETS_PATH' ] );
 define( 'WEB_ROOT',           WEB );
 define( 'TEMP_ROOT',          'temp' );

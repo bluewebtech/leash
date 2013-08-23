@@ -5,6 +5,10 @@ $url = explode( '/', $_SERVER[ 'REQUEST_URI' ] );
 
 switch( $url[ 2 ] ) {
 
+	case 'cache':
+		require 'sections/cache.php';
+	break;
+
 	case 'controllers':
 		require 'sections/controllers.php';
 	break;

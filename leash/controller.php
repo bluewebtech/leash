@@ -217,13 +217,13 @@ class Controller {
 	*/
 	public static function action_file_get( $controller = null, $action = null ) {
 		if( Controller::action_file_exists( $controller, $action ) && !View::view_isset() ) {
-			
+
 			ob_start();
 
 			if( !isset( $action ) ) {
-				include Controller::action_file_path( $action );
+				include Controller::action_file_path( $controller, $action );
 			} else {
-				include Controller::action_file_path( $action );
+				include Controller::action_file_path( $controller, $action );
 			}
 
 			$action = ob_get_contents();

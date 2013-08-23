@@ -9,7 +9,7 @@ class Loader {
 	 *
 	 * return void
 	*/
-	public static function request() {
+	public static function request() {		
 		// -- Auto load all available model class files
 		Model::get();
 

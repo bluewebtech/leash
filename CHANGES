@@ -1,5 +1,8 @@
 - CHANGE LOG -
 
+2013-08-23 - Added by Peter Morrison
+	- Added support for caching libraries, APC and Memcached
+
 2013-08-22 - Added by Peter Morrison
 	- Continuation of routing class feature addition and improvements. 
 	- Refactoring of the url, controller, view and loader classes to meet with 

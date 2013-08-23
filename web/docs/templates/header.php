@@ -206,6 +206,9 @@
 						</li>
 					</ul>
 					<h2>
+						<a href="/docs/cache">Cache</a>
+					</h2>
+					<h2>
 						<a href="/docs/routes">Routes</a>
 					</h2>
 					<h2>

@@ -47,6 +47,11 @@ $config = array(
 	'CSRF_TOKEN_NAME'    => 'csrf_token', 
 	'CSRF_KEY'           => '', 
 
+	// -- Cache
+	'CACHE_ENABLE'       => 0, 
+	'CACHE_TYPE'         => '', 
+	'CACHE_NAME'         => '', 
+
 	// Path to assets
 	'ASSETS_PATH'        => '/assets/', 
 
