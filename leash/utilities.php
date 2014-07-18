@@ -1,6 +1,6 @@
 <?php
 
-class System {
+class Utilities {
 
 	/**
      * Returns an array of all available controllers

@@ -6,7 +6,7 @@
 			</h2>
 			<ul>
 			<?php 
-			foreach( System::list_controllers() as $key => $value ) {
+			foreach( Utilities::list_controllers() as $key => $value ) {
 				echo "<li>\n";
 					echo HTML::nl( HTML::ahref( $value, '/' . $key . '/' ) );
 				echo "</li>\n";
@@ -16,7 +16,7 @@
 				<a href="#">Models</a>
 			</h2>
 			<?php 
-			foreach( System::list_models() as $key => $value ) {
+			foreach( Utilities::list_models() as $key => $value ) {
 				echo "<li>\n";
 					echo HTML::nl( HTML::ahref( $value, '#' ) );
 				echo "</li>\n";
@@ -26,7 +26,7 @@
 				<a href="#">Plugins</a>
 			</h2>
 			<?php 
-			foreach( System::list_plugins() as $key => $value ) {
+			foreach( Utilities::list_plugins() as $key => $value ) {
 				echo "<li>\n";
 					echo HTML::nl( HTML::ahref( $value, '#' ) );
 				echo "</li>\n";
@@ -36,7 +36,7 @@
 				<a href="#">Services</a>
 			</h2>
 			<?php 
-			foreach( System::list_services() as $key => $value ) {
+			foreach( Utilities::list_services() as $key => $value ) {
 				echo "<li>\n";
 					echo HTML::nl( HTML::ahref( $value, '#' ) );
 				echo "</li>\n";
@@ -46,7 +46,7 @@
 				<a href="#">Tags</a>
 			</h2>
 			<?php 
-			foreach( System::list_tags() as $key => $value ) {
+			foreach( Utilities::list_tags() as $key => $value ) {
 				echo "<li>\n";
 					echo HTML::nl( HTML::ahref( $value, '#' ) );
 				echo "</li>\n";

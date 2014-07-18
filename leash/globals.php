@@ -82,7 +82,7 @@ class Globals {
      * return string
     */
 	public static function controller() {
-		return Controller::controller_filename();
+		return Controller::controller_filename( Url::url_filter() );
 	}
 
 	/**
@@ -91,7 +91,7 @@ class Globals {
      * return string
     */
 	public static function action() {
-		return Controller::action_filename();
+		return Controller::action_filename( Url::url_filter() );
 	}
 
 	/**

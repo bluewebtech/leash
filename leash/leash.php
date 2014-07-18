@@ -1,11 +1,11 @@
 <?php
 
 /* 
- * This main.php file is the heart of the entire framework. Anything and 
+ * This leash.php file is the heart of the entire framework. Anything and 
  * everything that happens in this framework is dependant on this file. If 
- * this main.php file is removed, renamed or relocated, nothing will work. 
+ * this leash.php file is removed, renamed or relocated, nothing will work. 
  * 
- * Once this main.php file is loaded, a few checks for other necessary files 
+ * Once this leash.php file is loaded, a few checks for other necessary files 
  * are completed below. If any of the necessary files are missing an error 
  * will be displayed on the screen notifying of the current issue and what 
  * file is actually missing or causing problems.
@@ -16,7 +16,7 @@
 try {
 
 	if( file_exists( CONF ) ) {
-		require_once CONF;
+		require CONF;
 	} else {
 		throw new Exception( 'Configuration file missing in ' . CONF );
 	}
@@ -26,12 +26,13 @@ try {
 	exit;
 }
 
+
 // -- Make sure /leash/constants.php exists before trying to do anything else.
 // -- The constants.php file contains all application constants.
 try {
 
 	if( file_exists( CD . DS . SYSTEM . DS . 'constants' . SYSTEM_EXT ) ) {
-		require_once 'constants' . SYSTEM_EXT;
+		require 'constants' . SYSTEM_EXT;
 	} else {
 		throw new Exception( 'Constants file (constants' . SYSTEM_EXT . ') missing in ' . DS . SYSTEM . DS );
 	}
@@ -46,7 +47,7 @@ try {
 try {
 
 	if( file_exists( CD . DS . SYSTEM . DS . 'classes' . SYSTEM_EXT ) ) {
-		require_once 'classes' . SYSTEM_EXT;
+		require 'classes' . SYSTEM_EXT;
 	} else {
 		throw new Exception( 'Classes file (classes' . SYSTEM_EXT . ') missing in ' . DS . SYSTEM . DS );
 	}
@@ -58,13 +59,13 @@ try {
 
 // -- Check if documentation folder exists and load up the framework documentation
 if( Controller::controller_filename() == 'docs' && is_dir( DOCS_ROOT ) ) {
-	require_once DOCS_ROOT . 'index' . SYSTEM_EXT;
+	require DOCS_ROOT . 'index' . SYSTEM_EXT;
 	exit;
 }
 
 // -- Check if cli folder exists and load up the framework cli
 if( Controller::controller_filename() == 'cli' && is_dir( CLI_ROOT ) ) {
-	require_once CLI_ROOT . 'index' . SYSTEM_EXT;
+	require CLI_ROOT . 'index' . SYSTEM_EXT;
 	exit;
 }
 
@@ -73,7 +74,7 @@ if( Controller::controller_filename() == 'cli' && is_dir( CLI_ROOT ) ) {
 if( Application::application_file_exists() ) {
 
 	// -- Append the app.php file once
-	require_once Application::application_filename_ext();
+	require Application::application_filename_ext();
 
 	// -- Check if the App class was defined in the app.php file
 	if( Application::application_class_exists() ) {
@@ -81,6 +82,8 @@ if( Application::application_file_exists() ) {
 	}
 
 }
+
+//require CD . DS . 'vendor' . DS . 'autoload' . SYSTEM_EXT;
 
 // -- Core datasource configuration global
 $GLOBALS[ 'datasource' ] = $datasource;

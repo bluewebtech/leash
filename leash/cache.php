@@ -33,7 +33,6 @@ class Cache {
 
 									case 'memcached':
 										return Cache::$driver = new Memcached;
-										//return Memcached::exists() ? Cache::$driver = new Memcached : false;
 									break;
 								}
 

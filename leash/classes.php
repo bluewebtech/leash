@@ -37,7 +37,7 @@ $class_files = array(
 	SYSTEM_PATH . 'service' . SYSTEM_EXT, 
 	SYSTEM_PATH . 'session' . SYSTEM_EXT, 
 	SYSTEM_PATH . 'string' . SYSTEM_EXT, 
-	SYSTEM_PATH . 'system' . SYSTEM_EXT, 
+	SYSTEM_PATH . 'utilities' . SYSTEM_EXT, 
 	SYSTEM_PATH . 'tag' . SYSTEM_EXT, 
 	SYSTEM_PATH . 'unit' . SYSTEM_EXT, 
 	SYSTEM_PATH . 'url' . SYSTEM_EXT, 
